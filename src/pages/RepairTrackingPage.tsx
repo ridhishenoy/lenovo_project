@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
+import { formatCurrency } from '../lib/utils';
 import { 
   Search, 
   Wrench, 
@@ -109,7 +110,7 @@ export const RepairTrackingPage: React.FC = () => {
 
             <div>
               <span className="text-[10px] uppercase font-bold text-slate-400">Estimated Cost</span>
-              <p className="font-black text-blue-600 dark:text-cyan-400 text-sm">${activeOrder.estimatedCost}</p>
+              <p className="font-black text-blue-600 dark:text-cyan-400 text-sm">{formatCurrency(activeOrder.estimatedCost)}</p>
               <p className="text-[11px] text-slate-500">Updated: {activeOrder.lastUpdated}</p>
             </div>
           </div>

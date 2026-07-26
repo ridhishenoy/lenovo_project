@@ -14,7 +14,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Dell XPS 16 Laptop (Intel Core Ultra 9, 32GB RAM, 1TB SSD, RTX 4070)',
     brand: 'Dell',
     category: 'Laptops',
-    price: 2499,
+    price: 207417,
     discount: 10,
     rating: 4.8,
     reviewsCount: 124,
@@ -55,7 +55,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Apple MacBook Pro 16" M3 Max (36GB RAM, 1TB SSD, 30-core GPU)',
     brand: 'Apple',
     category: 'Laptops',
-    price: 3499,
+    price: 290417,
     discount: 5,
     rating: 4.9,
     reviewsCount: 210,
@@ -94,7 +94,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'ASUS ROG Strix G18 Gaming Laptop (i9-14900HX, 32GB RAM, RTX 4080)',
     brand: 'ASUS',
     category: 'Laptops',
-    price: 2899,
+    price: 240617,
     discount: 12,
     rating: 4.7,
     reviewsCount: 88,
@@ -132,7 +132,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Lenovo ThinkPad X1 Carbon Gen 12 (Core Ultra 7, 32GB RAM, 1TB SSD)',
     brand: 'Lenovo',
     category: 'Laptops',
-    price: 1999,
+    price: 165917,
     discount: 15,
     rating: 4.8,
     reviewsCount: 95,
@@ -168,7 +168,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Nexus Beast Extreme Gaming Desktop (i9-14900KS, RTX 4090 24GB, 64GB RAM, 4TB SSD)',
     brand: 'ASUS',
     category: 'Desktops',
-    price: 4299,
+    price: 356817,
     discount: 8,
     rating: 5.0,
     reviewsCount: 42,
@@ -203,7 +203,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'HP Color LaserJet Pro Wireless All-In-One Printer (MFP 3301fdw)',
     brand: 'HP',
     category: 'Printers',
-    price: 449,
+    price: 37267,
     discount: 18,
     rating: 4.6,
     reviewsCount: 156,
@@ -235,7 +235,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Epson EcoTank Pro ET-5850 Supertank All-in-One Printer',
     brand: 'Epson',
     category: 'Printers',
-    price: 899,
+    price: 74617,
     discount: 10,
     rating: 4.8,
     reviewsCount: 82,
@@ -265,7 +265,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Samsung Odyssey OLED G9 49" Curved Dual QHD Gaming Monitor (240Hz, 0.03ms)',
     brand: 'Samsung',
     category: 'Monitors',
-    price: 1599,
+    price: 132717,
     discount: 20,
     rating: 4.9,
     reviewsCount: 168,
@@ -296,7 +296,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'NVIDIA GeForce RTX 4090 Founder Edition 24GB GDDR6X',
     brand: 'NVIDIA',
     category: 'Components',
-    price: 1799,
+    price: 149317,
     discount: 0,
     rating: 4.9,
     reviewsCount: 310,
@@ -325,7 +325,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Corsair Vengeance RGB 64GB (2x32GB) DDR5 6000MHz CL30 RAM',
     brand: 'Corsair',
     category: 'Components',
-    price: 229,
+    price: 19007,
     discount: 15,
     rating: 4.8,
     reviewsCount: 77,
@@ -354,7 +354,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Logitech MX Master 3S Performance Wireless Mouse',
     brand: 'Logitech',
     category: 'Accessories',
-    price: 99,
+    price: 8217,
     discount: 10,
     rating: 4.9,
     reviewsCount: 450,
@@ -384,7 +384,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Samsung 990 PRO 2TB PCIe 4.0 M.2 NVMe SSD (Up to 7,450 MB/s)',
     brand: 'Samsung',
     category: 'Storage',
-    price: 169,
+    price: 14027,
     discount: 22,
     rating: 4.9,
     reviewsCount: 280,
@@ -418,7 +418,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'Laptop',
     description: 'Expert screen replacement, battery renewal, hinge repair, motherboard micro-soldering, and liquid damage recovery.',
     detailedDesc: 'Our certified engineers diagnose and resolve hardware failures for Dell, Apple MacBooks, Lenovo, ASUS, HP, and Razer laptops. Original OEM components used with up to 1-year warranty.',
-    startingPrice: 49,
+    startingPrice: 4067,
     estimatedTime: '24 - 48 Hours',
     features: ['Screen & Display Repair', 'Battery & Charging Port Service', 'Keyboard & Touchpad Replacement', 'Thermal Paste Re-pasting & Cleaning']
   },
@@ -429,7 +429,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'Monitor',
     description: 'No boot, blue screen of death (BSOD), power supply failure, GPU artifacts, and motherboard diagnostics.',
     detailedDesc: 'Complete bench testing and component swap testing to pinpoint performance bottlenecks or hardware failures in custom gaming rigs and workstation PCs.',
-    startingPrice: 39,
+    startingPrice: 3237,
     estimatedTime: 'Same Day Available',
     features: ['Hardware Failure Testing', 'Power Supply & GPU Diagnostics', 'BIOS Flashing & Recovery', 'Deep Thermal Dust Removal']
   },
@@ -440,7 +440,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'Printer',
     description: 'Paper jams, printhead unclogging, wireless network setup, toner/ink system servicing for HP, Epson, Canon.',
     detailedDesc: 'Restores crisp print quality and eliminates paper feeder jams. Onsite commercial service available for office multi-function printers.',
-    startingPrice: 45,
+    startingPrice: 3735,
     estimatedTime: '24 Hours',
     features: ['Printhead Cleaning & Flush', 'Roller & Gear Repair', 'Toner & Drum Replacement', 'Network Scanner Setup']
   },
@@ -451,7 +451,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'HardDrive',
     description: 'Class 100 cleanroom recovery for crashed hard drives, corrupted SSDs, RAID arrays, and formatted memory cards.',
     detailedDesc: 'No Data, No Fee guarantee. We extract valuable family photos, accounting databases, and project files safely without risking further drive damage.',
-    startingPrice: 99,
+    startingPrice: 8217,
     estimatedTime: '2 - 5 Days',
     features: ['No Data, No Fee Guarantee', 'Cleanroom Mechanical Recovery', 'RAID Array Reconstruction', 'Encrypted Drive Decryption']
   },
@@ -462,7 +462,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'ShieldAlert',
     description: 'Complete removal of malware, spyware, trojans, adware, and deep system rootkits with data preservation.',
     detailedDesc: 'Cleanse your operating system while keeping personal documents intact. Includes installation of premium security protection.',
-    startingPrice: 49,
+    startingPrice: 4067,
     estimatedTime: 'Same Day',
     features: ['Deep Rootkit & Ransomware Scan', 'Data Safeguard & Isolation', 'Browser Cleanup & Pop-up Removal', 'Commercial Antivirus License Included']
   },
@@ -473,7 +473,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'Cpu',
     description: 'Fresh Windows 11 / macOS install, driver optimization, software suite configuration, and license activation.',
     detailedDesc: 'Optimal setup with debloated OS configuration, latest GPU drivers, office software, and automated backup routines.',
-    startingPrice: 35,
+    startingPrice: 2905,
     estimatedTime: '2 - 4 Hours',
     features: ['Clean Windows 11 / macOS Restore', 'Latest Driver & Firmware Updates', 'Microsoft Office & Adobe Suite Setup', 'Data Migration from Old Drive']
   },
@@ -484,7 +484,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'Zap',
     description: 'Upgrade to high-speed NVMe SSD, expand RAM capacity, or upgrade graphics card for maximum gaming FPS.',
     detailedDesc: 'Transform sluggish computers into ultra-fast workstations. Free OS clone from old HDD to high-speed SSD included.',
-    startingPrice: 29,
+    startingPrice: 2407,
     estimatedTime: '2 Hours',
     features: ['Seamless HDD to SSD Cloning', 'Dual-Channel RAM Speed Upgrades', 'Graphics Card & PSU Upgrades', 'Cooling System Overhaul']
   },
@@ -495,7 +495,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'Building',
     description: 'Comprehensive IT support for corporate offices and home setups. Priority support, periodic checkups, and zero labor fee.',
     detailedDesc: 'Keep your business running smoothly with dedicated engineer visits, regular virus prevention, and unlimited remote tech assistance.',
-    startingPrice: 299,
+    startingPrice: 24817,
     estimatedTime: '1 Year Plan',
     features: ['Quarterly Onsite Checkups', 'Unlimited Remote Helpdesk Support', 'Zero Repair Labor Cost', 'Free Spare Parts Discount']
   }
@@ -509,14 +509,14 @@ export const MOCK_REPAIR_ORDERS: Record<string, RepairOrder> = {
     device: 'Dell XPS 15 (2023)',
     serialNumber: 'DL-XPS-98412-US',
     issue: 'Screen flickering & overheating under load',
-    estimatedCost: 185,
+    estimatedCost: 15355,
     currentStepIndex: 4, // Testing
     assignedTechnician: 'David Miller (Senior Hardware Tech)',
     lastUpdated: '10 minutes ago',
     timeline: [
       { step: 'Received', timestamp: 'Yesterday 09:30 AM', note: 'Device checked in at front desk.', completed: true },
       { step: 'Diagnosis', timestamp: 'Yesterday 02:15 PM', note: 'Thermal paste dried out; display flex cable loose.', completed: true },
-      { step: 'Waiting Approval', timestamp: 'Yesterday 03:00 PM', note: 'Customer approved repair quote of $185.', completed: true },
+      { step: 'Waiting Approval', timestamp: 'Yesterday 03:00 PM', note: 'Customer approved repair quote of ₹15,355.', completed: true },
       { step: 'Repair Started', timestamp: 'Today 10:00 AM', note: 'Replaced thermal pads, reapplied liquid metal, adjusted flex connector.', completed: true },
       { step: 'Testing', timestamp: 'Today 01:20 PM', note: 'Running 3DMark stress test and thermal monitoring.', completed: true },
       { step: 'Ready for Pickup', completed: false },
@@ -530,7 +530,7 @@ export const MOCK_REPAIR_ORDERS: Record<string, RepairOrder> = {
     device: 'Apple MacBook Air M2',
     serialNumber: 'C02G901XMD6M',
     issue: 'Liquid spill on keyboard, won\'t power on',
-    estimatedCost: 320,
+    estimatedCost: 26560,
     currentStepIndex: 2, // Waiting Approval
     assignedTechnician: 'Marcus Vance (Micro-soldering Lead)',
     lastUpdated: '1 hour ago',
@@ -553,7 +553,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'cpu',
     name: 'Intel Core i7-14700K (20 Cores, up to 5.6 GHz)',
     brand: 'Intel',
-    price: 399,
+    price: 33117,
     image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80',
     specs: { socket: 'LGA1700', ramType: 'DDR5/DDR4', speed: '3.4 - 5.6 GHz' },
     tdp: 125
@@ -563,7 +563,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'cpu',
     name: 'AMD Ryzen 7 7800X3D (8 Cores, 3D V-Cache)',
     brand: 'AMD',
-    price: 389,
+    price: 32287,
     image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80',
     specs: { socket: 'AM5', ramType: 'DDR5', speed: '4.2 - 5.0 GHz' },
     tdp: 120
@@ -573,7 +573,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'cpu',
     name: 'Intel Core i9-14900K (24 Cores, up to 6.0 GHz)',
     brand: 'Intel',
-    price: 549,
+    price: 45567,
     image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80',
     specs: { socket: 'LGA1700', ramType: 'DDR5', speed: '3.2 - 6.0 GHz' },
     tdp: 150
@@ -585,7 +585,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'motherboard',
     name: 'ASUS ROG Strix Z790-E Gaming WiFi',
     brand: 'ASUS',
-    price: 449,
+    price: 37267,
     image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80',
     specs: { socket: 'LGA1700', formFactor: 'ATX', ramType: 'DDR5', chipset: 'Intel Z790' },
     tdp: 30
@@ -595,7 +595,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'motherboard',
     name: 'MSI MAG B650 Tomahawk WiFi AM5',
     brand: 'MSI',
-    price: 219,
+    price: 18177,
     image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80',
     specs: { socket: 'AM5', formFactor: 'ATX', ramType: 'DDR5', chipset: 'AMD B650' },
     tdp: 25
@@ -607,7 +607,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'ram',
     name: 'Corsair Vengeance RGB 32GB (2x16GB) DDR5 6000MHz',
     brand: 'Corsair',
-    price: 129,
+    price: 10707,
     image: 'https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=400&q=80',
     specs: { ramType: 'DDR5', capacity: '32GB', speed: '6000MHz' },
     tdp: 10
@@ -617,7 +617,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'ram',
     name: 'G.Skill Trident Z5 RGB 64GB (2x32GB) DDR5 6400MHz',
     brand: 'G.Skill',
-    price: 239,
+    price: 19837,
     image: 'https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=400&q=80',
     specs: { ramType: 'DDR5', capacity: '64GB', speed: '6400MHz' },
     tdp: 15
@@ -629,7 +629,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'gpu',
     name: 'NVIDIA GeForce RTX 4080 Super 16GB',
     brand: 'NVIDIA',
-    price: 999,
+    price: 82917,
     image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80',
     specs: { vram: '16GB GDDR6X' },
     tdp: 320
@@ -639,7 +639,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'gpu',
     name: 'ASUS TUF Gaming RTX 4070 Ti Super 16GB',
     brand: 'ASUS',
-    price: 799,
+    price: 66317,
     image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80',
     specs: { vram: '16GB GDDR6X' },
     tdp: 285
@@ -649,7 +649,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'gpu',
     name: 'NVIDIA GeForce RTX 4090 24GB GDDR6X',
     brand: 'NVIDIA',
-    price: 1799,
+    price: 149317,
     image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80',
     specs: { vram: '24GB GDDR6X' },
     tdp: 450
@@ -661,7 +661,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'ssd',
     name: 'Samsung 990 PRO 2TB PCIe 4.0 NVMe SSD',
     brand: 'Samsung',
-    price: 169,
+    price: 14027,
     image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80',
     specs: { capacity: '2TB', speed: '7450 MB/s' },
     tdp: 8
@@ -673,7 +673,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'psu',
     name: 'Corsair RM850x 850W 80+ Gold Fully Modular',
     brand: 'Corsair',
-    price: 139,
+    price: 11537,
     image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80',
     specs: { wattage: 850, rating: '80+ Gold' },
     tdp: 0
@@ -683,7 +683,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'psu',
     name: 'Corsair RM1000x Shift 1000W 80+ Gold Modular',
     brand: 'Corsair',
-    price: 189,
+    price: 15687,
     image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80',
     specs: { wattage: 1000, rating: '80+ Gold' },
     tdp: 0
@@ -695,7 +695,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'cabinet',
     name: 'NZXT H9 Flow Dual-Chamber Mid-Tower ATX Case',
     brand: 'NZXT',
-    price: 159,
+    price: 13197,
     image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80',
     specs: { formFactor: 'ATX, Micro-ATX' },
     tdp: 0
@@ -707,7 +707,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'cooling',
     name: 'NZXT Kraken Elite 360 RGB LCD AIO Liquid Cooler',
     brand: 'NZXT',
-    price: 279,
+    price: 23157,
     image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80',
     specs: { type: '360mm AIO' },
     tdp: 15
@@ -719,7 +719,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'monitor',
     name: 'ASUS ROG Swift 27" 1440P 240Hz OLED Gaming Monitor',
     brand: 'ASUS',
-    price: 749,
+    price: 62167,
     image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=80',
     specs: { screenSize: '27 inch', refreshRate: '240Hz' },
     tdp: 0
@@ -731,7 +731,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'keyboard',
     name: 'Logitech G915 LIGHTSPEED Wireless RGB Mechanical Keyboard',
     brand: 'Logitech',
-    price: 199,
+    price: 16517,
     image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=400&q=80',
     specs: { switchType: 'GL Tactile Low Profile' },
     tdp: 0
@@ -743,7 +743,7 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
     type: 'mouse',
     name: 'Logitech G Pro X Superlight 2 Wireless Gaming Mouse',
     brand: 'Logitech',
-    price: 149,
+    price: 12367,
     image: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=400&q=80',
     specs: { weight: '60g', sensor: 'HERO 2 32K' },
     tdp: 0
@@ -751,9 +751,9 @@ export const PC_BUILDER_COMPONENTS: PCComponent[] = [
 ];
 
 export const VALID_COUPONS: Coupon[] = [
-  { code: 'NEXUS10', discountPercentage: 10, minPurchase: 100, description: '10% OFF on orders over $100' },
-  { code: 'BUILDGamer20', discountPercentage: 15, minPurchase: 500, description: '15% OFF on Custom PCs & Components' },
-  { code: 'WELCOME50', discountPercentage: 5, minPurchase: 50, description: '$50 flat value discount voucher' }
+  { code: 'NEXUS10', discountPercentage: 10, minPurchase: 8300, description: '10% OFF on orders over ₹8,300' },
+  { code: 'BUILDGamer20', discountPercentage: 15, minPurchase: 41500, description: '15% OFF on Custom PCs & Components' },
+  { code: 'WELCOME50', discountPercentage: 5, minPurchase: 4150, description: '₹4,150 flat value discount voucher' }
 ];
 
 export const SAMPLE_REVIEWS: Review[] = [
@@ -791,11 +791,11 @@ export const SAMPLE_ORDERS: Order[] = [
       {
         product: INITIAL_PRODUCTS[0],
         quantity: 1,
-        price: 2249
+        price: 186667
       }
     ],
-    totalAmount: 2249,
-    discountAmount: 250,
+    totalAmount: 186667,
+    discountAmount: 20750,
     status: 'Shipped',
     paymentMethod: 'Credit Card (Visa ending in 4242)',
     shippingAddress: '742 Evergreen Terrace, Springfield, OR 97477',

@@ -28,16 +28,16 @@ export const TradeInPage: React.FC = () => {
 
   // Valuation Calculation Logic
   const calculateValuation = () => {
-    let base = 250;
-    if (brand === 'Apple') base += 200;
-    if (brand === 'Dell' || brand === 'ASUS') base += 120;
-    if (processor.includes('i9') || processor.includes('M2') || processor.includes('M3')) base += 220;
-    if (ram === '32 GB+') base += 100;
-    if (condition === 'Flawless') base += 100;
-    if (condition === 'Fair') base -= 80;
-    if (hasCharger) base += 30;
+    let base = 20750;
+    if (brand === 'Apple') base += 16600;
+    if (brand === 'Dell' || brand === 'ASUS') base += 9960;
+    if (processor.includes('i9') || processor.includes('M2') || processor.includes('M3')) base += 18260;
+    if (ram === '32 GB+') base += 8300;
+    if (condition === 'Flawless') base += 8300;
+    if (condition === 'Fair') base -= 6640;
+    if (hasCharger) base += 2490;
 
-    return Math.max(100, base);
+    return Math.max(8300, base);
   };
 
   const estimatedValue = calculateValuation();
@@ -145,7 +145,7 @@ export const TradeInPage: React.FC = () => {
               onChange={(e) => setHasCharger(e.target.checked)}
               className="rounded text-blue-600"
             />
-            <span>Original Power Adapter / Charger Included (+ $30)</span>
+            <span>Original Power Adapter / Charger Included (+ ₹2,490)</span>
           </label>
         </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { SERVICES_LIST } from '../data/mockData';
 import { Link } from 'react-router-dom';
+import { formatCurrency } from '../lib/utils';
 import { 
   Wrench, 
   Laptop, 
@@ -77,7 +78,7 @@ export const ServicesPage: React.FC = () => {
                   <Clock className="w-3.5 h-3.5" /> {srv.estimatedTime}
                 </div>
                 <div className="text-lg font-black text-slate-900 dark:text-white">
-                  Starts at ${srv.startingPrice}
+                  Starts at {formatCurrency(srv.startingPrice)}
                 </div>
               </div>
 

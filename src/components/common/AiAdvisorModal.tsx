@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { Bot, Sparkles, Send, X, Cpu, DollarSign, Briefcase, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { Bot, Sparkles, Send, X, Cpu, IndianRupee, Briefcase, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export const AiAdvisorModal: React.FC = () => {
@@ -41,7 +41,7 @@ export const AiAdvisorModal: React.FC = () => {
       }
     } catch (err) {
       setResponseResult({
-        advice: `Based on your budget of $${budget} for ${useCase}, we recommend considering high-performance laptops with Intel Core Ultra or AMD Ryzen 7, 32GB RAM, and RTX 4070 GPU.`,
+        advice: `Based on your budget of ₹${budget} for ${useCase}, we recommend considering high-performance laptops with Intel Core Ultra or AMD Ryzen 7, 32GB RAM, and RTX 4070 GPU.`,
         suggestedSpecs: ['32GB LPDDR5X RAM', '1TB PCIe 4.0 NVMe SSD', 'RTX 4070 8GB GPU', '2.8K OLED 120Hz Screen'],
         topMatchCategory: 'High Performance Laptop',
         tips: 'Make sure to select at least a 2-year manufacturer onsite warranty for peace of mind.'
@@ -107,7 +107,7 @@ export const AiAdvisorModal: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
-                    <DollarSign className="w-3.5 h-3.5 text-emerald-500" /> Estimated Budget ($)
+                    <IndianRupee className="w-3.5 h-3.5 text-emerald-500" /> Estimated Budget (₹)
                   </label>
                   <input
                     type="number"

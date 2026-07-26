@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import { ProductCard } from '../components/common/ProductCard';
+import { formatCurrency } from '../lib/utils';
 import { ProductBrand, ProductCategory } from '../types';
 import { 
   SlidersHorizontal, 
@@ -227,13 +228,13 @@ export const ProductsPage: React.FC = () => {
           <div className="space-y-2">
             <div className="flex justify-between text-xs font-bold text-slate-900 dark:text-white">
               <span>Max Price:</span>
-              <span>${filter.maxPrice}</span>
+              <span>{formatCurrency(filter.maxPrice)}</span>
             </div>
             <input
               type="range"
-              min={100}
-              max={5000}
-              step={100}
+              min={8000}
+              max={415000}
+              step={5000}
               value={filter.maxPrice}
               onChange={(e) => setFilter(prev => ({ ...prev, maxPrice: Number(e.target.value) }))}
               className="w-full accent-blue-600 cursor-pointer"

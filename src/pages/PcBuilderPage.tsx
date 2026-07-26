@@ -161,7 +161,7 @@ export const PcBuilderPage: React.FC = () => {
                 <div className="flex items-center gap-3 shrink-0">
                   {comp && (
                     <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400">
-                      ${comp.price}
+                      {formatCurrency(comp.price)}
                     </span>
                   )}
 
@@ -292,7 +292,7 @@ export const PcBuilderPage: React.FC = () => {
                     <p className="text-[11px] text-slate-500">Brand: {item.brand} • {item.tdp}W TDP</p>
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-slate-200/60 dark:border-slate-800">
-                    <span className="text-sm font-extrabold text-blue-600 dark:text-cyan-400">${item.price}</span>
+                    <span className="text-sm font-extrabold text-blue-600 dark:text-cyan-400">{formatCurrency(item.price)}</span>
                     <span className="text-[10px] font-bold text-white bg-blue-600 px-2 py-1 rounded-lg">Select</span>
                   </div>
                 </div>

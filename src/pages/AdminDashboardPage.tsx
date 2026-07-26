@@ -115,7 +115,7 @@ export const AdminDashboardPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-sm space-y-2">
               <span className="text-[10px] font-bold uppercase text-slate-400">Total Monthly Revenue</span>
-              <div className="text-2xl font-black text-slate-900 dark:text-white">$142,850.00</div>
+              <div className="text-2xl font-black text-slate-900 dark:text-white">{formatCurrency(142850 * 83)}</div>
               <p className="text-[11px] text-emerald-500 font-bold flex items-center gap-1">
                 <TrendingUp className="w-3.5 h-3.5" /> +18.4% vs last month
               </p>
@@ -263,7 +263,7 @@ export const AdminDashboardPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Price ($)</label>
+              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Price (₹)</label>
               <input
                 type="number"
                 value={newPrice}

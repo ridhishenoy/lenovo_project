@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
     e.preventDefault();
     if (newsletterEmail.trim()) {
       setSubscribed(true);
-      showToast('Subscribed! Your $50 welcome voucher code is: WELCOME50', 'success');
+      showToast('Subscribed! Your ₹4,150 welcome voucher code is: WELCOME50', 'success');
       setNewsletterEmail('');
     }
   };
@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <h4 className="text-sm font-bold text-white">Free Express Shipping</h4>
-              <p className="text-xs text-slate-400">On all orders over $150</p>
+              <p className="text-xs text-slate-400">On all orders over ₹12,450</p>
             </div>
           </div>
 
@@ -98,7 +98,7 @@ export const Footer: React.FC = () => {
             {/* Newsletter */}
             <div className="pt-2">
               <h5 className="text-xs font-bold uppercase tracking-wider text-white mb-2">
-                Subscribe for $50 Discount Voucher
+                Subscribe for ₹4,150 Discount Voucher
               </h5>
               <form onSubmit={handleSubscribe} className="flex items-center gap-2 max-w-md">
                 <input

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { ProductCard } from '../components/common/ProductCard';
+import { formatCurrency } from '../lib/utils';
 import { SERVICES_LIST, BRAND_LOGOS } from '../data/mockData';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -32,7 +33,7 @@ export const HomePage: React.FC = () => {
     {
       title: 'Lenovo Legion Pro 7i & Legion Slim Series',
       subtitle: 'Unleash extreme RTX 4090 performance & Coldfront 5.0 cooling for competitive eSports gamers & creators.',
-      discount: 'Official Lenovo Sale • Save Up To $450',
+      discount: 'Official Lenovo Sale • Save Up To ₹37,350',
       ctaText: 'Explore Legion Laptops',
       link: '/products?category=Laptops',
       bgGradient: 'from-slate-950 via-slate-900 to-slate-950',
@@ -307,7 +308,7 @@ export const HomePage: React.FC = () => {
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                 <div>
                   <span className="text-[10px] uppercase font-bold text-slate-400">Starts At</span>
-                  <div className="text-lg font-black text-slate-900 dark:text-white">${srv.startingPrice}</div>
+                  <div className="text-lg font-black text-slate-900 dark:text-white">{formatCurrency(srv.startingPrice)}</div>
                 </div>
                 <Link
                   to="/booking"

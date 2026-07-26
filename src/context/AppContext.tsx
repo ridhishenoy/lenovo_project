@@ -105,7 +105,7 @@ const DEFAULT_FILTER: ProductFilter = {
   brands: [],
   categories: [],
   minPrice: 0,
-  maxPrice: 5000,
+  maxPrice: 415000,
   processors: [],
   ramSizes: [],
   storageTypes: [],
@@ -126,7 +126,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Products & Filter
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('nexustech_products');
+    const saved = localStorage.getItem('nexustech_products_inr');
     return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
   });
 
@@ -134,13 +134,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Cart & Wishlist & Compare
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem('nexustech_cart');
+    const saved = localStorage.getItem('nexustech_cart_inr');
     return saved ? JSON.parse(saved) : [];
   });
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
 
   const [wishlist, setWishlist] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('nexustech_wishlist');
+    const saved = localStorage.getItem('nexustech_wishlist_inr');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -149,12 +149,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Bookings & Repairs
   const [serviceBookings, setServiceBookings] = useState<ServiceBooking[]>(() => {
-    const saved = localStorage.getItem('nexustech_bookings');
+    const saved = localStorage.getItem('nexustech_bookings_inr');
     return saved ? JSON.parse(saved) : [];
   });
 
   const [repairOrders, setRepairOrders] = useState<Record<string, RepairOrder>>(() => {
-    const saved = localStorage.getItem('nexustech_repairs');
+    const saved = localStorage.getItem('nexustech_repairs_inr');
     return saved ? JSON.parse(saved) : MOCK_REPAIR_ORDERS;
   });
 
@@ -209,23 +209,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Save changes to localStorage
   useEffect(() => {
-    localStorage.setItem('nexustech_products', JSON.stringify(products));
+    localStorage.setItem('nexustech_products_inr', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {
-    localStorage.setItem('nexustech_cart', JSON.stringify(cart));
+    localStorage.setItem('nexustech_cart_inr', JSON.stringify(cart));
   }, [cart]);
 
   useEffect(() => {
-    localStorage.setItem('nexustech_wishlist', JSON.stringify(wishlist));
+    localStorage.setItem('nexustech_wishlist_inr', JSON.stringify(wishlist));
   }, [wishlist]);
 
   useEffect(() => {
-    localStorage.setItem('nexustech_bookings', JSON.stringify(serviceBookings));
+    localStorage.setItem('nexustech_bookings_inr', JSON.stringify(serviceBookings));
   }, [serviceBookings]);
 
   useEffect(() => {
-    localStorage.setItem('nexustech_repairs', JSON.stringify(repairOrders));
+    localStorage.setItem('nexustech_repairs_inr', JSON.stringify(repairOrders));
   }, [repairOrders]);
 
   // Apply dark mode class to root document element
@@ -391,7 +391,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       device: bookingData.deviceModel || bookingData.serviceType,
       serialNumber: 'SN-PENDING',
       issue: bookingData.problemDescription,
-      estimatedCost: 75,
+      estimatedCost: 6225,
       currentStepIndex: 0,
       assignedTechnician: 'Assigned upon arrival',
       lastUpdated: 'Just now',
