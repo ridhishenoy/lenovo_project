@@ -1,0 +1,6 @@
+{
+  "name": "NexusTech Computer Store & Services",
+  "description": "Premium computer store, custom PC builder, repair & service hub, trade-in calculator, and AI PC advisor.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
