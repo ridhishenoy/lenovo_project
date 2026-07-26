@@ -87,12 +87,12 @@ export const Footer: React.FC = () => {
                 <span>LENOVO</span>
               </div>
               <span className="text-xl font-black text-white tracking-tight">
-                NEXUS<span className="text-lenovo-red">TECH</span>
+                SHENOY <span className="text-lenovo-red">COMPUTERS</span>
               </span>
             </Link>
 
             <p className="text-xs text-slate-400 leading-relaxed pr-4">
-              NexusTech is your premier authorized hardware retailer and certified service center for Lenovo Legion, ThinkPad, Yoga, high-performance desktops, printers, and precision micro-soldering repairs.
+              Shenoy Computers is your premier authorized hardware retailer and certified service center for Lenovo Legion, ThinkPad, Yoga, high-performance desktops, printers, and precision micro-soldering repairs.
             </p>
 
             {/* Newsletter */}
@@ -178,7 +178,7 @@ export const Footer: React.FC = () => {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
         <div>
-          © {new Date().getFullYear()} NexusTech Computers & Service Hub. All Rights Reserved.
+          © {new Date().getFullYear()} Shenoy Computers & Service Hub. All Rights Reserved.
         </div>
         <div className="flex items-center gap-6">
           <Link to="/about" className="hover:text-slate-300">About Us</Link>

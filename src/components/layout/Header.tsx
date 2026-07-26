@@ -145,7 +145,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenVoiceSearch, onOpenImageSe
             </div>
             <div>
               <span className="text-xl font-black tracking-tighter text-slate-900 dark:text-white flex items-center gap-1">
-                NEXUS<span className="text-lenovo-red">TECH</span>
+                SHENOY <span className="text-lenovo-red">COMPUTERS</span>
               </span>
               <span className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400 block -mt-1">
                 Authorized Lab & Retail
