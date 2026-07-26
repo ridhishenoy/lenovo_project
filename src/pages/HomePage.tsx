@@ -42,7 +42,7 @@ export const HomePage: React.FC = () => {
     {
       title: 'ThinkPad X1 Carbon & Yoga Pro 9i',
       subtitle: 'Intel Core Ultra AI NPUs, 3.2K PureSight OLED displays, and legendary ThinkPad carbon-fiber durability.',
-      discount: 'Lenovo Pro Member Perks Included',
+      discount: 'Official Lenovo Premium Warranty Included',
       ctaText: 'Explore Business & Yoga',
       link: '/products?category=Laptops',
       bgGradient: 'from-neutral-900 via-neutral-950 to-black',

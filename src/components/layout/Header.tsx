@@ -105,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenVoiceSearch, onOpenImageSe
         <div className="hidden sm:flex items-center gap-4 mx-auto sm:mx-0">
           <span className="flex items-center gap-1.5 text-neutral-300">
             <span className="w-2 h-2 rounded-full bg-lenovo-red animate-pulse"></span>
-            <span className="font-bold text-lenovo-red">LENOVO PRO</span> Exclusive Member Savings & Free Express Delivery
+            <span className="font-bold text-lenovo-red">AUTHORIZED PARTNER</span> Official Lenovo Sales & Service Hub
           </span>
           <span className="hidden md:inline-block text-neutral-700">•</span>
           <span className="hidden md:flex items-center gap-1 text-emerald-400">
