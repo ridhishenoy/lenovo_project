@@ -1,0 +1,400 @@
+[
+  {
+    "id": "prod-1",
+    "name": "Dell Inspiron 15",
+    "brand": "Dell",
+    "category": "Laptops",
+    "price": 65000,
+    "discount": 5,
+    "rating": 4.5,
+    "reviewsCount": 42,
+    "availability": "In Stock",
+    "badge": "Featured",
+    "images": [
+      "/images/products/inspiron-15.png"
+    ],
+    "shortDesc": "Dell Inspiron 15 with Core Ultra 5, 8GB DDR5, and 512GB SSD.",
+    "fullDesc": "Powerful and efficient Dell Inspiron 15 featuring an Intel Core Ultra 5 processor, 8GB of fast DDR5 memory, and a 512GB SSD. Includes Windows 11 and MS Office 2024 + 365.",
+    "specs": {
+      "processor": "Intel Core Ultra 5 225H",
+      "ram": "8GB DDR5",
+      "storage": "512GB SSD",
+      "gpu": "Intel Integrated Graphics",
+      "display": "15.6\" FHD",
+      "os": "Windows 11",
+      "warranty": "1 Year Basic Onsite Service",
+      "screenSize": "15.6 inch",
+      "weight": "3.8 lbs",
+      "color": "Black"
+    },
+    "technicalDetails": {
+      "Software": "MSO 24 + MSO 365",
+      "Bag": "Ecoloop Essential Black"
+    },
+    "warranty": "1 Year Basic Onsite Service",
+    "featured": true,
+    "bestSeller": false,
+    "latestArrival": true
+  },
+  {
+    "id": "prod-2",
+    "name": "Lenovo ThinkCentre Neo 50t Gen 6",
+    "brand": "Lenovo",
+    "category": "Desktops",
+    "price": 45000,
+    "discount": 0,
+    "rating": 4.7,
+    "reviewsCount": 18,
+    "availability": "In Stock",
+    "badge": "New",
+    "images": [
+      "/images/products/thinkcentre-neo.png"
+    ],
+    "shortDesc": "Lenovo ThinkCentre desktop powered by Intel Core Ultra 3 AI Processor.",
+    "fullDesc": "A powerful and reliable business desktop. Includes 8GB DDR5 RAM, 512GB NVMe SSD, Lenovo USB Keyboard & Mouse, and a 20\" LED display.",
+    "specs": {
+      "processor": "Intel Core Ultra 3 205 (13 TOPS AI)",
+      "ram": "8GB DDR5",
+      "storage": "512GB M.2 NVMe SSD",
+      "gpu": "Intel Integrated Graphics",
+      "display": "Lenovo 20\" LED",
+      "os": "Windows 11 Pro",
+      "warranty": "3 Year Warranty",
+      "formFactor": "Tower",
+      "color": "Black"
+    },
+    "technicalDetails": {
+      "Accessories": "Lenovo USB Keyboard & Optical Mouse",
+      "Monitor": "Lenovo 20\" LED Included"
+    },
+    "warranty": "3 Year Warranty",
+    "featured": true,
+    "bestSeller": true,
+    "latestArrival": true
+  },
+  {
+    "id": "prod-3",
+    "name": "Dell Inspiron 15 (Platinum Silver)",
+    "brand": "Dell",
+    "category": "Laptops",
+    "price": 72000,
+    "discount": 10,
+    "rating": 4.8,
+    "reviewsCount": 56,
+    "availability": "In Stock",
+    "badge": "Popular",
+    "images": [
+      "/images/products/inspiron-15-silver.png"
+    ],
+    "shortDesc": "Dell Inspiron 15 with Core Ultra 5, 16GB DDR5, and Platinum Silver finish.",
+    "fullDesc": "Premium Dell Inspiron 15 with 16GB DDR5 RAM, 512GB SSD, backlit keyboard, and an elegant Platinum Silver finish. Perfect for everyday performance and multitasking.",
+    "specs": {
+      "processor": "Intel Core Ultra 5 - 225H",
+      "ram": "16GB DDR5",
+      "storage": "512GB SSD",
+      "gpu": "UMA Graphics",
+      "display": "15.6\" FHD",
+      "os": "Windows 11",
+      "warranty": "1 Year Basic Onsite Service",
+      "screenSize": "15.6 inch",
+      "weight": "3.8 lbs",
+      "color": "Platinum Silver"
+    },
+    "technicalDetails": {
+      "Keyboard": "Backlit Keyboard",
+      "Bag": "Dell Ecoloop Essential"
+    },
+    "warranty": "1 Year Basic Onsite Service",
+    "featured": false,
+    "bestSeller": true,
+    "latestArrival": false
+  },
+  {
+    "id": "prod-4",
+    "name": "Dell Inspiron 14",
+    "brand": "Dell",
+    "category": "Laptops",
+    "price": 85000,
+    "discount": 15,
+    "rating": 4.9,
+    "reviewsCount": 112,
+    "availability": "In Stock",
+    "badge": "Premium",
+    "images": [
+      "/images/products/inspiron-14.png"
+    ],
+    "shortDesc": "Sleek 14-inch Dell laptop with Core Ultra 5, 16GB RAM, and fingerprint reader.",
+    "fullDesc": "Ultra-portable and secure 14-inch laptop. Features an Intel Core Ultra 5 processor, 16GB DDR5 memory, 400-nit FHD+ non-touch display, and a backlit keyboard with fingerprint reader.",
+    "specs": {
+      "processor": "Intel Core Ultra 5 225U",
+      "ram": "16GB DDR5",
+      "storage": "512GB SSD",
+      "gpu": "Intel Graphics",
+      "display": "14.0\" FHD+ 400Nits Non-Touch 60Hz",
+      "os": "Windows 11",
+      "warranty": "1 Year Onsite Hardware Service",
+      "screenSize": "14 inch",
+      "weight": "3.2 lbs",
+      "color": "Platinum Silver"
+    },
+    "technicalDetails": {
+      "Security": "Fingerprint Reader",
+      "Keyboard": "Backlit Keyboard",
+      "Software": "Office H&S 2024 + M365",
+      "Bag": "Dell Ecoloop Essential"
+    },
+    "warranty": "1 Year Onsite Hardware Service",
+    "featured": true,
+    "bestSeller": false,
+    "latestArrival": true
+  },
+  {
+    "id": "prod-5",
+    "name": "Dell Gaming G15 5530",
+    "brand": "Dell",
+    "category": "Laptops",
+    "price": 95000,
+    "discount": 5,
+    "rating": 4.6,
+    "reviewsCount": 89,
+    "availability": "In Stock",
+    "badge": "Gaming",
+    "images": [
+      "/images/products/gaming-g15.png"
+    ],
+    "shortDesc": "High-performance 15.6\" gaming laptop with Intel i5-13450HX and RTX 3050.",
+    "fullDesc": "Dominate your games with the Dell G15 5530. Featuring an Intel Core i5-13450HX processor, 16GB DDR5 RAM, and an NVIDIA GeForce RTX 3050 6GB GPU for immersive 120Hz gaming.",
+    "specs": {
+      "processor": "Intel Core i5-13450HX",
+      "ram": "16GB (1x16GB) DDR5 4800MT/s",
+      "storage": "512GB SSD",
+      "gpu": "NVIDIA GeForce RTX 3050 6GB GDDR6",
+      "display": "15.6\" FHD 120Hz Non-Touch",
+      "os": "Windows 11",
+      "warranty": "1 Year Basic Onsite Service",
+      "screenSize": "15.6 inch",
+      "weight": "5.8 lbs",
+      "color": "Dark Shadow Gray"
+    },
+    "technicalDetails": {
+      "Keyboard": "US English 4-Zone RGB Backlit KBD with Numeric Keypad and G-Key",
+      "Thermal": "Black thermal shelf",
+      "Bag": "Dell Essential Backpack",
+      "Software": "Office H&S 2024"
+    },
+    "warranty": "1 Year Basic Onsite Service after remote diagnosis with Hardware-Only Support",
+    "featured": true,
+    "bestSeller": true,
+    "latestArrival": false
+  },
+  {
+    "id": "prod-6",
+    "name": "HP Color LaserJet Pro Wireless All-In-One Printer (MFP 3301fdw)",
+    "brand": "HP",
+    "category": "Printers",
+    "price": 37267,
+    "discount": 18,
+    "rating": 4.6,
+    "reviewsCount": 156,
+    "availability": "In Stock",
+    "badge": "Office Favorite",
+    "images": [
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "shortDesc": "Fast duplex color printing, scanning, copying, faxing, and high-speed auto-feeder for office productivity.",
+    "fullDesc": "Designed for small-to-medium work teams. Print sharp color documents at speeds up to 26 ppm with dual-band Wi-Fi and HP Smart App integration.",
+    "specs": {
+      "printerType": "Color Laser All-In-One",
+      "connectivity": "Wi-Fi 6, Ethernet, USB 2.0, HP Smart App",
+      "warranty": "1 Year Commercial Warranty",
+      "color": "White/Slate"
+    },
+    "technicalDetails": {
+      "Print Speed": "Up to 26 ppm black & color",
+      "Duplex": "Automatic Two-Sided Printing",
+      "Duty Cycle": "Up to 40,000 pages per month"
+    },
+    "warranty": "1 Year HP Onsite Replacement Warranty",
+    "featured": false,
+    "bestSeller": true,
+    "latestArrival": false
+  },
+  {
+    "id": "prod-7",
+    "name": "Epson EcoTank Pro ET-5850 Supertank All-in-One Printer",
+    "brand": "Epson",
+    "category": "Printers",
+    "price": 74617,
+    "discount": 10,
+    "rating": 4.8,
+    "reviewsCount": 82,
+    "availability": "In Stock",
+    "badge": "Lowest Ink Cost",
+    "images": [
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "shortDesc": "Cartridge-free EcoTank printer delivering ultra-low-cost black and color prints with PrecisionCore Heat-Free technology.",
+    "fullDesc": "Save up to 80% on ink with low-cost replacement ink bottles vs. standard capacity color laser cartridges. Includes 2 years of ink in the box.",
+    "specs": {
+      "printerType": "SuperTank Inkjet All-In-One",
+      "connectivity": "Wi-Fi, Ethernet, Direct Connect",
+      "warranty": "2 Years Epson Warranty"
+    },
+    "technicalDetails": {
+      "Paper Capacity": "500-sheet paper capacity (2x 250 trays)",
+      "Display": "4.3\" Color Touchscreen"
+    },
+    "warranty": "2 Years Epson Limited Warranty with Registration",
+    "featured": true,
+    "bestSeller": false,
+    "latestArrival": false
+  },
+  {
+    "id": "prod-8",
+    "name": "Samsung Odyssey OLED G9 49\" Curved Dual QHD Gaming Monitor (240Hz, 0.03ms)",
+    "brand": "Samsung",
+    "category": "Monitors",
+    "price": 132717,
+    "discount": 20,
+    "rating": 4.9,
+    "reviewsCount": 168,
+    "availability": "In Stock",
+    "badge": "Super Ultra-Wide",
+    "images": [
+      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "shortDesc": "Revolutionary 49-inch 1800R curved OLED panel with 240Hz refresh rate and lightning 0.03ms GTG response time.",
+    "fullDesc": "Immerse yourself in infinite contrast ratio and quantum dot colors. Features Neo Quantum Processor Pro and Gaming Hub for standalone cloud gaming.",
+    "specs": {
+      "display": "49\" Dual QHD (5120 x 1440) OLED 1800R Curved",
+      "screenSize": "49 inch",
+      "connectivity": "HDMI 2.1, DisplayPort 1.4, USB Hub",
+      "warranty": "3 Years Burn-in Warranty"
+    },
+    "technicalDetails": {
+      "HDR": "VESA DisplayHDR True Black 400",
+      "Sync Technology": "AMD FreeSync Premium Pro"
+    },
+    "warranty": "3 Years Samsung Manufacturer Warranty including OLED Burn-in Protection",
+    "featured": true,
+    "bestSeller": true,
+    "latestArrival": false
+  },
+  {
+    "id": "prod-9",
+    "name": "NVIDIA GeForce RTX 4090 Founder Edition 24GB GDDR6X",
+    "brand": "NVIDIA",
+    "category": "Components",
+    "price": 149317,
+    "discount": 0,
+    "rating": 4.9,
+    "reviewsCount": 310,
+    "availability": "Low Stock",
+    "badge": "Apex GPU",
+    "images": [
+      "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "shortDesc": "The ultimate GeForce GPU delivering massive leap in performance, DLSS 3 frame generation, and ray tracing.",
+    "fullDesc": "Powered by NVIDIA Ada Lovelace architecture. 16,384 CUDA cores, 24GB GDDR6X VRAM, and 4th Gen Tensor Cores for AI acceleration.",
+    "specs": {
+      "gpu": "RTX 4090 24GB",
+      "warranty": "3 Years Official Warranty"
+    },
+    "technicalDetails": {
+      "Boost Clock": "2.52 GHz",
+      "Recommended PSU": "850W minimum"
+    },
+    "warranty": "3 Years NVIDIA Limited Warranty",
+    "featured": true,
+    "bestSeller": true,
+    "latestArrival": false
+  },
+  {
+    "id": "prod-10",
+    "name": "Corsair Vengeance RGB 64GB (2x32GB) DDR5 6000MHz CL30 RAM",
+    "brand": "Corsair",
+    "category": "Components",
+    "price": 19007,
+    "discount": 15,
+    "rating": 4.8,
+    "reviewsCount": 77,
+    "availability": "In Stock",
+    "badge": "High Speed Memory",
+    "images": [
+      "https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "shortDesc": "Optimized for Intel XMP 3.0 & AMD EXPO with dynamic ten-zone RGB lighting and tight CL30 timings.",
+    "fullDesc": "Unlock unprecedented memory performance for high-end rendering and multi-threaded processing.",
+    "specs": {
+      "ram": "64GB (2x32GB) DDR5 6000MHz",
+      "warranty": "Lifetime Warranty"
+    },
+    "technicalDetails": {
+      "Timing": "30-36-36-76",
+      "Voltage": "1.40V"
+    },
+    "warranty": "Limited Lifetime Corsair Warranty",
+    "featured": false,
+    "bestSeller": false,
+    "latestArrival": true
+  },
+  {
+    "id": "prod-11",
+    "name": "Logitech MX Master 3S Performance Wireless Mouse",
+    "brand": "Logitech",
+    "category": "Accessories",
+    "price": 8217,
+    "discount": 10,
+    "rating": 4.9,
+    "reviewsCount": 450,
+    "availability": "In Stock",
+    "badge": "Iconic Design",
+    "images": [
+      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "shortDesc": "Quiet clicks, 8K DPI track-on-glass sensor, MagSpeed electromagnetic scrolling wheel.",
+    "fullDesc": "An iconic ergonomic master mouse redesigned for ultimate precision, tactile quiet clicks, and cross-computer flow control.",
+    "specs": {
+      "connectivity": "Bluetooth + Logi Bolt USB Receiver",
+      "warranty": "1 Year Warranty",
+      "color": "Pale Grey / Graphite"
+    },
+    "technicalDetails": {
+      "Battery Life": "Up to 70 days on full charge",
+      "DPI Range": "200 to 8000 DPI"
+    },
+    "warranty": "1 Year Logitech Hardware Warranty",
+    "featured": true,
+    "bestSeller": true,
+    "latestArrival": false
+  },
+  {
+    "id": "prod-12",
+    "name": "Samsung 990 PRO 2TB PCIe 4.0 M.2 NVMe SSD (Up to 7,450 MB/s)",
+    "brand": "Samsung",
+    "category": "Storage",
+    "price": 14027,
+    "discount": 22,
+    "rating": 4.9,
+    "reviewsCount": 280,
+    "availability": "In Stock",
+    "badge": "Speed Demon",
+    "images": [
+      "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1000&q=80"
+    ],
+    "shortDesc": "Top-tier M.2 SSD for heavy gaming, 3D editing, and data transfer with smart thermal control.",
+    "fullDesc": "Reach sequential read/write speeds up to 7,450/6,900 MB/s. DirectStorage support for instant game load times.",
+    "specs": {
+      "storage": "2TB PCIe Gen4 x4 NVMe 2.0",
+      "warranty": "5 Years Limited Warranty"
+    },
+    "technicalDetails": {
+      "Read Speed": "7,450 MB/s",
+      "TBW Rating": "1,200 TBW"
+    },
+    "warranty": "5 Years Samsung Limited Warranty",
+    "featured": false,
+    "bestSeller": true,
+    "latestArrival": false
+  }
+]

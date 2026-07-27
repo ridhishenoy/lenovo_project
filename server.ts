@@ -1,10 +1,29 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
+import multer from "multer";
 
 dotenv.config();
+
+// Configure Multer for image uploads
+const storage = multer.diskStorage({
+  destination: function (_req, _file, cb) {
+    const uploadDir = path.join(process.cwd(), "public", "images", "products");
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    cb(null, uploadDir);
+  },
+  filename: function (_req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, 'prod-' + uniqueSuffix + ext);
+  }
+});
+const upload = multer({ storage: storage });
 
 async function startServer() {
   const app = express();
@@ -17,17 +36,82 @@ async function startServer() {
     res.json({ status: "ok", name: "NexusTech API Server" });
   });
 
-  // AI PC Advisor Endpoint using Gemini API
+  // --- PRODUCT MANAGEMENT CRUD API ---
+  const DATA_FILE = path.join(process.cwd(), "data", "products.json");
+  
+  const readProducts = () => {
+    if (!fs.existsSync(DATA_FILE)) return [];
+    try {
+      const data = fs.readFileSync(DATA_FILE, "utf-8");
+      return JSON.parse(data);
+    } catch (e) {
+      console.error("Error reading products:", e);
+      return [];
+    }
+  };
+
+  const writeProducts = (products: any) => {
+    fs.writeFileSync(DATA_FILE, JSON.stringify(products, null, 2), "utf-8");
+  };
+
+  // Get all products
+  app.get("/api/products", (_req, res) => {
+    res.json(readProducts());
+  });
+
+  // Create product
+  app.post("/api/products", (req, res) => {
+    const products = readProducts();
+    const newProduct = { ...req.body, id: `prod-${Date.now()}` };
+    products.unshift(newProduct); // Add to beginning
+    writeProducts(products);
+    res.status(201).json(newProduct);
+  });
+
+  // Update product
+  app.put("/api/products/:id", (req, res) => {
+    const products = readProducts();
+    const index = products.findIndex((p: any) => p.id === req.params.id);
+    if (index !== -1) {
+      products[index] = { ...products[index], ...req.body, id: req.params.id };
+      writeProducts(products);
+      res.json(products[index]);
+    } else {
+      res.status(404).json({ error: "Product not found" });
+    }
+  });
+
+  // Delete product
+  app.delete("/api/products/:id", (req, res) => {
+    const products = readProducts();
+    const filtered = products.filter((p: any) => p.id !== req.params.id);
+    if (filtered.length !== products.length) {
+      writeProducts(filtered);
+      res.json({ success: true });
+    } else {
+      res.status(404).json({ error: "Product not found" });
+    }
+  });
+
+  // Image Upload Endpoint
+  app.post("/api/upload", upload.array('images', 5), (req, res) => {
+    try {
+      const files = req.files as Express.Multer.File[];
+      const urls = files.map(file => `/images/products/${file.filename}`);
+      res.json({ success: true, urls });
+    } catch (error: any) {
+      res.status(500).json({ error: "Upload failed", message: error.message });
+    }
+  });
+
+  // --- AI ADVISOR API ---
   app.post("/api/ai-advisor", async (req, res) => {
     try {
       const { userQuery, budget, useCase, preferredBrand } = req.body;
-
       const apiKey = process.env.GEMINI_API_KEY;
-
       if (!apiKey || apiKey === "MY_GEMINI_API_KEY") {
-        // Smart fallback response if API key is not configured
         return res.json({
-          recommendation: `Based on your budget of ${budget ? `$${budget}` : 'your specified amount'} for ${useCase || 'general computing'}, we recommend considering high-performance devices with at least 16GB-32GB RAM, Intel Core Ultra or AMD Ryzen 7 processors, and dedicated graphics if gaming/rendering.`,
+          recommendation: `Based on your budget of ${budget ? '$'+budget : 'your specified amount'} for ${useCase || 'general computing'}, we recommend considering high-performance devices with at least 16GB-32GB RAM, Intel Core Ultra or AMD Ryzen 7 processors, and dedicated graphics if gaming/rendering.`,
           suggestedProducts: ['Dell XPS 16 Laptop', 'ASUS ROG Strix G18', 'Nexus Beast Extreme Desktop'],
           keyFeaturesToLookFor: ['At least 1TB PCIe 4.0 NVMe SSD', '100% sRGB/DCI-P3 Display', 'Dedicated Cooling Chamber', 'Wi-Fi 6E/7'],
           aiNote: 'AI Advisor running in fallback mode. Set GEMINI_API_KEY in secrets for custom live AI insights.'
@@ -35,7 +119,6 @@ async function startServer() {
       }
 
       const ai = new GoogleGenAI({ apiKey });
-
       const prompt = `You are NexusTech's expert Computer & Service Advisor AI.
 A user is asking for hardware recommendations or tech troubleshooting advice.
 User Query: "${userQuery || 'Recommend a computer setup'}"
@@ -69,7 +152,6 @@ Provide a structured, friendly, concise expert response in JSON format with the 
         success: true,
         data: parsedData
       });
-
     } catch (error: any) {
       console.error("AI Advisor error:", error);
       res.status(500).json({

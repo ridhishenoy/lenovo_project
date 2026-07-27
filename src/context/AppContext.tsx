@@ -21,6 +21,7 @@ import {
   SAMPLE_ORDERS, 
   SAMPLE_REVIEWS 
 } from '../data/mockData';
+import { ProductService } from '../services/api';
 
 export interface Toast {
   id: string;
@@ -129,7 +130,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isAdminMode, setIsAdminMode] = useState<boolean>(false);
 
   // Products & Filter
-  const [products, setProducts] = useState<Product[]>(INITIAL_PRODUCTS);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    ProductService.getProducts()
+      .then(data => setProducts(data))
+      .catch(err => console.error("Failed to fetch products:", err));
+  }, []);
 
   const [filter, setFilter] = useState<ProductFilter>(DEFAULT_FILTER);
 
@@ -209,9 +216,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isCompareModalOpen, setIsCompareModalOpen] = useState<boolean>(false);
 
   // Save changes to localStorage
-  useEffect(() => {
-    localStorage.setItem('nexustech_products_inr', JSON.stringify(products));
-  }, [products]);
+  // Removed products from localStorage persistence as it's now managed by the backend
+
 
   useEffect(() => {
     localStorage.setItem('nexustech_cart_inr', JSON.stringify(cart));
@@ -264,19 +270,34 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setFilter(DEFAULT_FILTER);
   };
 
-  const addProduct = (newProduct: Product) => {
-    setProducts(prev => [newProduct, ...prev]);
-    showToast(`Product "${newProduct.name}" added successfully!`, 'success');
+  const addProduct = async (newProduct: Product) => {
+    try {
+      const savedProd = await ProductService.createProduct(newProduct);
+      setProducts(prev => [savedProd, ...prev]);
+      showToast(`Product "${savedProd.name}" added successfully!`, 'success');
+    } catch (e) {
+      showToast(`Failed to add product`, 'error');
+    }
   };
 
-  const updateProduct = (updatedProduct: Product) => {
-    setProducts(prev => prev.map(p => p.id === updatedProduct.id ? updatedProduct : p));
-    showToast(`Product "${updatedProduct.name}" updated`, 'success');
+  const updateProduct = async (updatedProduct: Product) => {
+    try {
+      const savedProd = await ProductService.updateProduct(updatedProduct.id, updatedProduct);
+      setProducts(prev => prev.map(p => p.id === savedProd.id ? savedProd : p));
+      showToast(`Product "${savedProd.name}" updated`, 'success');
+    } catch (e) {
+      showToast(`Failed to update product`, 'error');
+    }
   };
 
-  const deleteProduct = (id: string) => {
-    setProducts(prev => prev.filter(p => p.id !== id));
-    showToast(`Product deleted`, 'info');
+  const deleteProduct = async (id: string) => {
+    try {
+      await ProductService.deleteProduct(id);
+      setProducts(prev => prev.filter(p => p.id !== id));
+      showToast(`Product deleted`, 'info');
+    } catch (e) {
+      showToast(`Failed to delete product`, 'error');
+    }
   };
 
   const addToCart = (product: Product, quantity: number = 1, selectedWarranty?: string) => {

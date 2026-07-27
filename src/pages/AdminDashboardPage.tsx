@@ -16,45 +16,36 @@ import {
   CheckCircle2, 
   X,
   ShieldCheck,
-  Award
+  Award,
+  Eye
 } from 'lucide-react';
+import { ProductFormModal } from '../components/admin/ProductFormModal';
 
 export const AdminDashboardPage: React.FC = () => {
-  const { products, setProducts, repairOrders, setRepairOrders, userOrders, showToast } = useApp();
+  const { products, addProduct, updateProduct, deleteProduct, repairOrders, setRepairOrders, showToast } = useApp();
 
   const [activeTab, setActiveTab] = useState<'analytics' | 'products' | 'repairs'>('analytics');
 
-  // Add Product State
-  const [isAddingProduct, setIsAddingProduct] = useState(false);
-  const [newName, setNewName] = useState('');
-  const [newBrand, setNewBrand] = useState('Dell');
-  const [newCategory, setNewCategory] = useState('Laptops');
-  const [newPrice, setNewPrice] = useState('149900');
+  // Product Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
-  const handleAddProduct = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newProd: Product = {
-      id: `prod-${Date.now()}`,
-      name: newName,
-      brand: newBrand as any,
-      category: newCategory as any,
-      price: Number(newPrice),
-      discount: 10,
-      rating: 5,
-      reviewsCount: 1,
-      availability: 'In Stock',
-      images: ['https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80'],
-      shortDesc: `${newName} high performance workstation.`,
-      fullDesc: `${newName} delivers top tier performance with original OEM warranty.`,
-      specs: { processor: 'Intel Core i9', ram: '32 GB', storage: '1 TB SSD' },
-      technicalDetails: {},
-      warranty: '3 Years Premium Onsite Warranty'
-    };
+  const handleOpenAddModal = () => {
+    setEditingProduct(null);
+    setIsModalOpen(true);
+  };
 
-    setProducts([newProd, ...products]);
-    setIsAddingProduct(false);
-    setNewName('');
-    showToast(`Added ${newProd.name} to store catalog!`, 'success');
+  const handleOpenEditModal = (product: Product) => {
+    setEditingProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleSaveProduct = async (product: Product) => {
+    if (editingProduct) {
+      await updateProduct(product);
+    } else {
+      await addProduct(product);
+    }
   };
 
   const handleUpdateRepairStep = (repairId: string, stepDelta: number) => {
@@ -162,19 +153,56 @@ export const AdminDashboardPage: React.FC = () => {
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">Catalog Management</h2>
             <button
-              onClick={() => setIsAddingProduct(true)}
+              onClick={handleOpenAddModal}
               className="px-5 py-2.5 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold text-xs rounded-full flex items-center gap-1.5 shadow-sm transition-all"
             >
               <Plus className="w-4 h-4" /> Add Hardware Item
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map(p => (
-              <ProductCard key={p.id} product={p} />
+              <div key={p.id} className="bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex gap-4">
+                  <div className="w-24 h-24 flex-shrink-0 bg-white rounded-lg border border-[#D8CFC2] dark:border-[#4A433D] p-2 flex items-center justify-center">
+                    {p.images[0] ? (
+                      <img src={p.images[0]} alt={p.name} className="max-w-full max-h-full object-contain" />
+                    ) : (
+                      <Package className="w-8 h-8 text-gray-300" />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-[#2D241E] dark:text-[#F5F2ED] line-clamp-2">{p.name}</h3>
+                    <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8] mt-1">{p.brand} • {p.category}</p>
+                    <div className="text-sm font-bold text-[#3F5B43] dark:text-[#8FAE83] mt-2">
+                      {formatCurrency(p.price)}
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-[#D8CFC2]/50 dark:border-[#4A433D]/50">
+                  <button onClick={() => window.open(`/product/${p.id}`, '_blank')} className="py-2 text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] hover:bg-black/5 dark:hover:bg-white/5 rounded-lg flex items-center justify-center gap-1 transition-colors">
+                    <Eye className="w-4 h-4" /> View
+                  </button>
+                  <button onClick={() => handleOpenEditModal(p)} className="py-2 text-xs font-semibold text-[#2D241E] dark:text-[#F5F2ED] hover:bg-black/5 dark:hover:bg-white/5 rounded-lg flex items-center justify-center gap-1 transition-colors">
+                    <Edit3 className="w-4 h-4" /> Edit
+                  </button>
+                  <button onClick={() => { if(confirm('Are you sure you want to delete this product?')) deleteProduct(p.id); }} className="py-2 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg flex items-center justify-center gap-1 transition-colors">
+                    <Trash2 className="w-4 h-4" /> Delete
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </div>
+      )}
+
+      {/* Render Product Modal if open */}
+      {isModalOpen && (
+        <ProductFormModal
+          initialData={editingProduct}
+          onClose={() => setIsModalOpen(false)}
+          onSave={handleSaveProduct}
+        />
       )}
 
       {/* Service Repair Jobs Management */}
