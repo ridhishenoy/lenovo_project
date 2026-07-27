@@ -146,7 +146,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/services" className="hover:text-[#8FAE83] transition-colors">Precision Hardware Repair</Link></li>
               <li><Link to="/services" className="hover:text-[#8FAE83] transition-colors">Printer Maintenance</Link></li>
               <li><Link to="/services" className="hover:text-[#8FAE83] transition-colors">Cleanroom Data Recovery</Link></li>
-              <li><Link to="/pc-builder" className="text-[#D4AF5A] font-semibold hover:underline transition-colors">Custom PC Studio</Link></li>
+              {/* <li><Link to="/pc-builder" className="text-[#D4AF5A] font-semibold hover:underline transition-colors">Custom PC Studio</Link></li> */}
               <li><Link to="/trade-in" className="hover:text-[#8FAE83] transition-colors">Instant Trade-In Valuation</Link></li>
               <li><Link to="/track" className="hover:text-[#8FAE83] transition-colors">Live Repair Tracking</Link></li>
             </ul>
@@ -179,7 +179,7 @@ export const Footer: React.FC = () => {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-[#4A433D]/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#C5BFB8]/70">
         <div>
-          © {new Date().getFullYear()} Shenoy Computers Luxury Retail & Service Atelier. All Rights Reserved.
+          © {new Date().getFullYear()} Shenoy Computers. All Rights Reserved.
         </div>
         <div className="flex items-center gap-6">
           <Link to="/about" className="hover:text-[#F5F2ED]">About Us</Link>

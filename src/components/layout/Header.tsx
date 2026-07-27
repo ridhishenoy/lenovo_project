@@ -80,7 +80,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenVoiceSearch, onOpenImageSe
   const navLinks = [
     { label: 'Home', path: '/' },
     { label: 'Products', path: '/products' },
-    { label: 'Custom PC Builder', path: '/pc-builder', badge: 'Crafted' },
+    // { label: 'Custom PC Builder', path: '/pc-builder', badge: 'Crafted' },
     { label: 'Services', path: '/services' },
     { label: 'Service Booking', path: '/booking' },
     { label: 'Track Repair', path: '/track' },
@@ -119,9 +119,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenVoiceSearch, onOpenImageSe
           
           {/* Brand Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0 group">
-            <div className="w-10 h-10 rounded-2xl bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] flex items-center justify-center font-serif text-xl font-bold shadow-md group-hover:scale-105 transition-transform">
-              S
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="Shenoy Computers" 
+              className="w-12 h-12 object-contain group-hover:scale-105 transition-transform drop-shadow-sm rounded-lg grayscale-[0.3] sepia-[0.4] hue-rotate-180 saturate-150 mix-blend-multiply dark:mix-blend-screen opacity-90" 
+            />
             <div>
               <span className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-[#2D241E] dark:text-[#F5F2ED] flex items-center gap-1.5">
                 SHENOY <span className="text-[#C56A43] dark:text-[#C97A4D] font-sans font-light text-lg">COMPUTERS</span>

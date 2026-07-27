@@ -48,14 +48,14 @@ export const HomePage: React.FC = () => {
       link: '/products?category=Laptops',
       image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=1000&q=80'
     },
-    {
-      title: 'Custom PC Studio & Precision Tuning',
-      subtitle: 'Hand-assembled custom liquid-cooled workstations with real-time socket & TDP thermal load validation.',
-      discount: 'Free Liquid Thermal Compound Upgrade',
-      ctaText: 'Enter PC Studio',
-      link: '/pc-builder',
-      image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1000&q=80'
-    }
+    // {
+    //   title: 'Custom PC Studio & Precision Tuning',
+    //   subtitle: 'Hand-assembled custom liquid-cooled workstations with real-time socket & TDP thermal load validation.',
+    //   discount: 'Free Liquid Thermal Compound Upgrade',
+    //   ctaText: 'Enter PC Studio',
+    //   link: '/pc-builder',
+    //   image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1000&q=80'
+    // }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -274,6 +274,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* Custom PC Studio Banner CTA */}
+      {/* 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#3F5B43] to-[#708A58] p-8 sm:p-14 shadow-xl text-white grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="space-y-5">
@@ -314,6 +315,7 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* Services Overview */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -17,7 +17,7 @@ import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceBookingPage } from './pages/ServiceBookingPage';
 import { RepairTrackingPage } from './pages/RepairTrackingPage';
-import { PcBuilderPage } from './pages/PcBuilderPage';
+// import { PcBuilderPage } from './pages/PcBuilderPage';
 import { TradeInPage } from './pages/TradeInPage';
 import { UserDashboardPage } from './pages/UserDashboardPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
@@ -50,7 +50,7 @@ const AppContent: React.FC = () => {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/booking" element={<ServiceBookingPage />} />
           <Route path="/track" element={<RepairTrackingPage />} />
-          <Route path="/pc-builder" element={<PcBuilderPage />} />
+          {/* <Route path="/pc-builder" element={<PcBuilderPage />} /> */}
           <Route path="/trade-in" element={<TradeInPage />} />
           <Route path="/dashboard" element={<UserDashboardPage />} />
           <Route path="/admin" element={<AdminDashboardPage />} />
