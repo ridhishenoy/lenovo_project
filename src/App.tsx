@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -25,6 +25,23 @@ import { StoreLocatorPage } from './pages/StoreLocatorPage';
 import { ContactUsPage } from './pages/ContactUsPage';
 import { AboutUsPage } from './pages/AboutUsPage';
 import { FaqPage } from './pages/FaqPage';
+import { LoginPage } from './pages/LoginPage';
+
+// Protected Route Component
+const ProtectedRoute = ({ children, requireAdmin = false }: { children: JSX.Element, requireAdmin?: boolean }) => {
+  const { user } = useApp();
+  const location = useLocation();
+
+  if (!user) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  if (requireAdmin && user.role !== 'admin') {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
+};
 
 const AppContent: React.FC = () => {
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
@@ -52,8 +69,9 @@ const AppContent: React.FC = () => {
           <Route path="/track" element={<RepairTrackingPage />} />
           {/* <Route path="/pc-builder" element={<PcBuilderPage />} /> */}
           <Route path="/trade-in" element={<TradeInPage />} />
-          <Route path="/dashboard" element={<UserDashboardPage />} />
-          <Route path="/admin" element={<AdminDashboardPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<ProtectedRoute><UserDashboardPage /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute requireAdmin={true}><AdminDashboardPage /></ProtectedRoute>} />
           <Route path="/stores" element={<StoreLocatorPage />} />
           <Route path="/contact" element={<ContactUsPage />} />
           <Route path="/about" element={<AboutUsPage />} />

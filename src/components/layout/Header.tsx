@@ -14,7 +14,8 @@ import {
   Menu, 
   X, 
   ShieldCheck,
-  Compass
+  Compass,
+  User
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -37,7 +38,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenVoiceSearch, onOpenImageSe
     setIsAiAdvisorOpen,
     setIsCartDrawerOpen,
     setIsCompareModalOpen,
-    user
+    user,
+    logout
   } = useApp();
 
   const [searchInputValue, setSearchInputValue] = useState('');
@@ -260,50 +262,73 @@ export const Header: React.FC<HeaderProps> = ({ onOpenVoiceSearch, onOpenImageSe
               )}
             </button>
 
-            {/* User Profile */}
+            {/* User Profile / Auth */}
             <div className="relative">
-              <button
-                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="p-1 rounded-full border border-[#D8CFC2] dark:border-[#4A433D] hover:ring-2 hover:ring-[#3F5B43] dark:hover:ring-[#8FAE83] transition-all"
-              >
-                <img
-                  src={user.avatar}
-                  alt={user.name}
-                  referrerPolicy="no-referrer"
-                  className="w-8 h-8 rounded-full object-cover"
-                />
-              </button>
+              {user ? (
+                <>
+                  <button
+                    onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                    className="p-1 rounded-full border border-[#D8CFC2] dark:border-[#4A433D] hover:ring-2 hover:ring-[#3F5B43] dark:hover:ring-[#8FAE83] transition-all"
+                  >
+                    <img
+                      src={user.avatar}
+                      alt={user.name}
+                      referrerPolicy="no-referrer"
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                  </button>
 
-              {userDropdownOpen && (
-                <div className="absolute right-0 mt-3 w-52 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-2xl shadow-xl py-2 z-50 text-xs font-medium">
-                  <div className="px-4 py-2 border-b border-[#D8CFC2]/50 dark:border-[#4A433D]/50">
-                    <p className="font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] truncate">{user.name}</p>
-                    <p className="text-[#6F665F] dark:text-[#C5BFB8] text-[10px] truncate">{user.email}</p>
-                  </div>
-                  <Link
-                    to="/dashboard"
-                    onClick={() => setUserDropdownOpen(false)}
-                    className="block px-4 py-2 text-[#2D241E] dark:text-[#F5F2ED] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520]"
-                  >
-                    User Dashboard
-                  </Link>
-                  {user.role === 'admin' && (
-                    <Link
-                      to="/admin"
-                      onClick={() => setUserDropdownOpen(false)}
-                      className="block px-4 py-2 text-[#2D241E] dark:text-[#F5F2ED] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520]"
-                    >
-                      Admin Portal
-                    </Link>
+                  {userDropdownOpen && (
+                    <div className="absolute right-0 mt-3 w-52 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-2xl shadow-xl py-2 z-50 text-xs font-medium">
+                      <div className="px-4 py-2 border-b border-[#D8CFC2]/50 dark:border-[#4A433D]/50">
+                        <p className="font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] truncate">{user.name}</p>
+                        <p className="text-[#6F665F] dark:text-[#C5BFB8] text-[10px] truncate">{user.email}</p>
+                      </div>
+                      <Link
+                        to="/dashboard"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="block px-4 py-2 text-[#2D241E] dark:text-[#F5F2ED] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520]"
+                      >
+                        User Dashboard
+                      </Link>
+                      {user.role === 'admin' && (
+                        <Link
+                          to="/admin"
+                          onClick={() => setUserDropdownOpen(false)}
+                          className="block px-4 py-2 text-[#2D241E] dark:text-[#F5F2ED] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520]"
+                        >
+                          Admin Portal
+                        </Link>
+                      )}
+                      <Link
+                        to="/track"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="block px-4 py-2 text-[#2D241E] dark:text-[#F5F2ED] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520]"
+                      >
+                        Repair Status
+                      </Link>
+                      <div className="border-t border-[#D8CFC2]/50 dark:border-[#4A433D]/50 mt-1 pt-1">
+                        <button
+                          onClick={() => {
+                            logout();
+                            setUserDropdownOpen(false);
+                          }}
+                          className="w-full text-left block px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        >
+                          Sign Out
+                        </button>
+                      </div>
+                    </div>
                   )}
-                  <Link
-                    to="/track"
-                    onClick={() => setUserDropdownOpen(false)}
-                    className="block px-4 py-2 text-[#2D241E] dark:text-[#F5F2ED] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520]"
-                  >
-                    Track Repair Order
-                  </Link>
-                </div>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  className="px-4 py-2 bg-[#EEE6DA] hover:bg-[#D8CFC2] dark:bg-[#2B2520] dark:hover:bg-[#352E28] text-[#2D241E] dark:text-[#F5F2ED] font-semibold text-xs rounded-full shadow-sm transition-all flex items-center gap-2"
+                >
+                  <User className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Sign In</span>
+                </Link>
               )}
             </div>
 

@@ -55,6 +55,44 @@ export const ProductService = {
     
     if (!res.ok) throw new Error('Failed to upload images');
     const data = await res.json();
-    return data.urls; // returns array of saved file URLs
+    return data.urls;
+  }
+};
+
+export const AuthService = {
+  login: async (credentials: any) => {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
+    });
+    
+    let data;
+    try {
+      data = await res.json();
+    } catch (e) {
+      throw new Error('API connection failed. Please restart your dev server.');
+    }
+    
+    if (!res.ok) throw new Error(data?.error || 'Failed to login');
+    return data.user;
+  },
+  
+  signup: async (userData: any) => {
+    const res = await fetch(`${API_BASE}/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData),
+    });
+    
+    let data;
+    try {
+      data = await res.json();
+    } catch (e) {
+      throw new Error('API connection failed. Please restart your dev server.');
+    }
+    
+    if (!res.ok) throw new Error(data?.error || 'Failed to sign up');
+    return data.user;
   }
 };

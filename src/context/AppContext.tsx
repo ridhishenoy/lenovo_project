@@ -21,7 +21,7 @@ import {
   SAMPLE_ORDERS, 
   SAMPLE_REVIEWS 
 } from '../data/mockData';
-import { ProductService } from '../services/api';
+import { AuthService, ProductService } from '../services/api';
 
 export interface Toast {
   id: string;
@@ -83,7 +83,10 @@ interface AppContextType {
   addTradeInQuote: (quote: Omit<TradeInQuote, 'id' | 'createdAt' | 'voucherCode'>) => TradeInQuote;
 
   // User & Orders
-  user: UserProfile;
+  user: UserProfile | null;
+  login: (credentials: any) => Promise<void>;
+  signup: (userData: any) => Promise<void>;
+  logout: () => void;
   orders: Order[];
   addOrder: (order: Order) => void;
 
@@ -185,25 +188,40 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [tradeInQuotes, setTradeInQuotes] = useState<TradeInQuote[]>([]);
 
   // User & Orders
-  const [user, setUser] = useState<UserProfile>({
-    id: 'usr-101',
-    name: 'Alex Morgan',
-    email: 'alex.morgan@example.com',
-    phone: '+1 (555) 234-5678',
-    role: 'user',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-    addresses: [
-      {
-        id: 'addr-1',
-        title: 'Home Address',
-        street: '742 Evergreen Terrace',
-        city: 'Springfield',
-        state: 'OR',
-        zip: '97477',
-        isDefault: true
-      }
-    ]
+  const [user, setUser] = useState<UserProfile | null>(() => {
+    const saved = localStorage.getItem('nexustech_user');
+    return saved ? JSON.parse(saved) : null;
   });
+
+  const login = async (credentials: any) => {
+    try {
+      const userData = await AuthService.login(credentials);
+      setUser(userData);
+      localStorage.setItem('nexustech_user', JSON.stringify(userData));
+      showToast('Logged in successfully!', 'success');
+    } catch (e: any) {
+      showToast(e.message || 'Login failed', 'error');
+      throw e;
+    }
+  };
+
+  const signup = async (userData: any) => {
+    try {
+      const newUserData = await AuthService.signup(userData);
+      setUser(newUserData);
+      localStorage.setItem('nexustech_user', JSON.stringify(newUserData));
+      showToast('Account created successfully!', 'success');
+    } catch (e: any) {
+      showToast(e.message || 'Signup failed', 'error');
+      throw e;
+    }
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('nexustech_user');
+    showToast('Logged out successfully', 'info');
+  };
 
   const [orders, setOrders] = useState<Order[]>(SAMPLE_ORDERS);
 
@@ -520,6 +538,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         tradeInQuotes,
         addTradeInQuote,
         user,
+        login,
+        signup,
+        logout,
         orders,
         addOrder,
         toasts,
