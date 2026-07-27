@@ -96,34 +96,7 @@ export const Footer: React.FC = () => {
               Shenoy Computers is your premier authorized hardware retailer and certified service atelier for high-performance laptops, custom desktop workstations, precision printers, and micro-soldering hardware repairs.
             </p>
 
-            {/* Newsletter */}
-            <div className="pt-2">
-              <h5 className="text-xs font-semibold uppercase tracking-wider text-[#F5F2ED] mb-3">
-                Subscribe for ₹4,150 Luxury Welcome Voucher
-              </h5>
-              <form onSubmit={handleSubscribe} className="flex items-center gap-2 max-w-md">
-                <input
-                  type="email"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  required
-                  className="flex-1 px-4 py-2.5 text-xs bg-[#221D19] border border-[#4A433D] rounded-full text-[#F5F2ED] placeholder-[#C5BFB8]/60 focus:outline-none focus:ring-2 focus:ring-[#8FAE83]"
-                />
-                <button
-                  type="submit"
-                  className="px-5 py-2.5 bg-[#C56A43] hover:bg-[#AA5A39] text-white font-semibold text-xs rounded-full shadow-sm transition-all flex items-center gap-1.5 shrink-0"
-                >
-                  <span>Subscribe</span>
-                  <Send className="w-3.5 h-3.5" />
-                </button>
-              </form>
-              {subscribed && (
-                <div className="flex items-center gap-1.5 text-xs text-[#76A46E] mt-2 font-medium">
-                  <CheckCircle2 className="w-4 h-4" /> Code <span className="font-bold underline text-[#D4AF5A]">WELCOME50</span> unlocked!
-                </div>
-              )}
-            </div>
+
           </div>
 
           {/* Column 1: Shop */}
