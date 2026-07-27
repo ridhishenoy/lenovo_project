@@ -21,7 +21,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'In Stock',
     badge: 'Featured',
     images: [
-      'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/15-3520/media-gallery/black/in3520-cnb-05000ff090-bk.psd?fmt=pjpg&pscan=auto&scl=1&wid=1000'
+      '/images/products/inspiron-15.png'
     ],
     shortDesc: 'Dell Inspiron 15 with Core Ultra 5, 8GB DDR5, and 512GB SSD.',
     fullDesc: 'Powerful and efficient Dell Inspiron 15 featuring an Intel Core Ultra 5 processor, 8GB of fast DDR5 memory, and a 512GB SSD. Includes Windows 11 and MS Office 2024 + 365.',
@@ -58,7 +58,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'In Stock',
     badge: 'New',
     images: [
-      'https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MjExOTIzfGltYWdlL3BuZ3xoYzAvaDEzLzEzNDkxODY1MzYwNDE0LnBuZ3xhMjhlNzZkMDQzMjczZGU3MjRmOWRiMjIzNGU4OTNjZDZmOTMyMjc4YjU1YzM2NDQyZjFhNzRmNzIwNjZlMTVm/lenovo-thinkcentre-neo-50t-intel-tower-hero.png'
+      '/images/products/thinkcentre-neo.png'
     ],
     shortDesc: 'Lenovo ThinkCentre desktop powered by Intel Core Ultra 3 AI Processor.',
     fullDesc: 'A powerful and reliable business desktop. Includes 8GB DDR5 RAM, 512GB NVMe SSD, Lenovo USB Keyboard & Mouse, and a 20" LED display.',
@@ -94,7 +94,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'In Stock',
     badge: 'Popular',
     images: [
-      'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/15-3530/media-gallery/silver/in3530-cnb-05000ff090-sl.psd?fmt=pjpg&pscan=auto&scl=1&wid=1000'
+      '/images/products/inspiron-15-silver.png'
     ],
     shortDesc: 'Dell Inspiron 15 with Core Ultra 5, 16GB DDR5, and Platinum Silver finish.',
     fullDesc: 'Premium Dell Inspiron 15 with 16GB DDR5 RAM, 512GB SSD, backlit keyboard, and an elegant Platinum Silver finish. Perfect for everyday performance and multitasking.',
@@ -131,7 +131,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'In Stock',
     badge: 'Premium',
     images: [
-      'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/14-5430/media-gallery/silver/in5430-cnb-05000ff090-sl.psd?fmt=pjpg&pscan=auto&scl=1&wid=1000'
+      '/images/products/inspiron-14.png'
     ],
     shortDesc: 'Sleek 14-inch Dell laptop with Core Ultra 5, 16GB RAM, and fingerprint reader.',
     fullDesc: 'Ultra-portable and secure 14-inch laptop. Features an Intel Core Ultra 5 processor, 16GB DDR5 memory, 400-nit FHD+ non-touch display, and a backlit keyboard with fingerprint reader.',
@@ -170,7 +170,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'In Stock',
     badge: 'Gaming',
     images: [
-      'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/g-series/g15-5530/media-gallery/gray/notebook-g15-5530-gray-gallery-1.psd?fmt=pjpg&pscan=auto&scl=1&wid=1000'
+      '/images/products/gaming-g15.png'
     ],
     shortDesc: 'High-performance 15.6" gaming laptop with Intel i5-13450HX and RTX 3050.',
     fullDesc: 'Dominate your games with the Dell G15 5530. Featuring an Intel Core i5-13450HX processor, 16GB DDR5 RAM, and an NVIDIA GeForce RTX 3050 6GB GPU for immersive 120Hz gaming.',

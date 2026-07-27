@@ -38,7 +38,7 @@ export const HomePage: React.FC = () => {
       discount: 'Curated Heritage Collection • Complimentary White-Glove Setup',
       ctaText: 'Explore Atelier Collection',
       link: '/products?category=Laptops',
-      image: 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/g-series/g15-5530/media-gallery/gray/notebook-g15-5530-gray-gallery-1.psd?fmt=pjpg&pscan=auto&scl=1&wid=1000'
+      image: '/images/products/gaming-g15.png'
     },
     {
       title: 'Lenovo ThinkCentre & Dell Inspiron Series',
@@ -46,7 +46,7 @@ export const HomePage: React.FC = () => {
       discount: 'Official Onsite Warranty Included',
       ctaText: 'View Executive PCs',
       link: '/products?category=Laptops',
-      image: 'https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MjExOTIzfGltYWdlL3BuZ3xoYzAvaDEzLzEzNDkxODY1MzYwNDE0LnBuZ3xhMjhlNzZkMDQzMjczZGU3MjRmOWRiMjIzNGU4OTNjZDZmOTMyMjc4YjU1YzM2NDQyZjFhNzRmNzIwNjZlMTVm/lenovo-thinkcentre-neo-50t-intel-tower-hero.png'
+      image: '/images/products/thinkcentre-neo.png'
     },
     // {
     //   title: 'Custom PC Studio & Precision Tuning',
