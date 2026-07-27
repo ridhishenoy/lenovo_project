@@ -1,6 +1,6 @@
 import React from 'react';
 import { STORE_LOCATIONS } from '../data/mockData';
-import { MapPin, Phone, Clock, Navigation, CheckCircle2 } from 'lucide-react';
+import { MapPin, Phone, Clock, Navigation } from 'lucide-react';
 
 export const StoreLocatorPage: React.FC = () => {
   return (
@@ -8,14 +8,14 @@ export const StoreLocatorPage: React.FC = () => {
       
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto space-y-2">
-        <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-cyan-400 text-xs font-bold tracking-wider uppercase">
-          Physical Flagship Hubs
+        <span className="px-3.5 py-1 rounded-full bg-[#3F5B43]/15 dark:bg-[#8FAE83]/15 text-[#3F5B43] dark:text-[#8FAE83] text-xs font-semibold tracking-wider uppercase">
+          Physical Flagship Showrooms
         </span>
-        <h1 className="text-3xl font-black text-slate-900 dark:text-white">
-          Store Locator & Service Centers
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">
+          Store Locator & Service Hubs
         </h1>
-        <p className="text-xs text-slate-500 dark:text-slate-400">
-          Visit our modern retail experience centers for hands-on device demos, custom PC assembly, and instant repairs.
+        <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8]">
+          Visit our modern retail experience showrooms for hands-on device demos, custom PC assembly, and instant repairs.
         </p>
       </div>
 
@@ -23,29 +23,29 @@ export const StoreLocatorPage: React.FC = () => {
         {STORE_LOCATIONS.map((loc) => (
           <div
             key={loc.id}
-            className="p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-sm space-y-4 text-xs"
+            className="p-6 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl shadow-sm space-y-4 text-xs"
           >
             <div className="flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-blue-600 dark:text-cyan-400" />
-              <h3 className="text-base font-bold text-slate-900 dark:text-white">{loc.name}</h3>
+              <MapPin className="w-5 h-5 text-[#3F5B43] dark:text-[#8FAE83]" />
+              <h3 className="text-base font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">{loc.name}</h3>
             </div>
 
-            <p className="text-slate-600 dark:text-slate-300">{loc.address}</p>
+            <p className="text-[#6F665F] dark:text-[#C5BFB8]">{loc.address}</p>
 
-            <div className="space-y-1 text-slate-500">
+            <div className="space-y-1 text-[#6F665F] dark:text-[#C5BFB8]">
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-blue-500" /> {loc.phone}
+                <Phone className="w-3.5 h-3.5 text-[#3F5B43]" /> {loc.phone}
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-blue-500" /> {loc.hours}
+                <Clock className="w-3.5 h-3.5 text-[#3F5B43]" /> {loc.hours}
               </div>
             </div>
 
             <div className="pt-2">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">In-Store Services:</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8] block mb-1">In-Store Services:</span>
               <div className="flex flex-wrap gap-1">
                 {loc.servicesOffered.map((srv, i) => (
-                  <span key={i} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md font-semibold text-[10px]">
+                  <span key={i} className="px-2.5 py-0.5 bg-[#EEE6DA] dark:bg-[#2B2520] text-[#2D241E] dark:text-[#F5F2ED] rounded-full font-semibold text-[10px]">
                     {srv}
                   </span>
                 ))}
@@ -54,7 +54,7 @@ export const StoreLocatorPage: React.FC = () => {
 
             <button
               onClick={() => window.open(`https://maps.google.com/?q=${encodeURIComponent(loc.address)}`, '_blank')}
-              className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 mt-2"
+              className="w-full py-2.5 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold rounded-full flex items-center justify-center gap-2 mt-2 shadow-sm transition-all"
             >
               <Navigation className="w-3.5 h-3.5" /> Get Directions
             </button>

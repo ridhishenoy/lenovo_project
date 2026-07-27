@@ -121,7 +121,11 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Theme state
-  const [theme, setTheme] = useState<'dark' | 'light'>('light');
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    const saved = localStorage.getItem('nexustech_theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
   const [isAdminMode, setIsAdminMode] = useState<boolean>(false);
 
   // Products & Filter
@@ -230,6 +234,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Apply dark mode class to root document element
   useEffect(() => {
+    localStorage.setItem('nexustech_theme', theme);
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {

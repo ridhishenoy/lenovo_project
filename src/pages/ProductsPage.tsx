@@ -94,57 +94,161 @@ export const ProductsPage: React.FC = () => {
     });
   };
 
+  const SidebarContent = () => (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between border-b border-[#D8CFC2]/60 dark:border-[#4A433D]/60 pb-4">
+        <h3 className="text-base font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] flex items-center gap-2">
+          <SlidersHorizontal className="w-4 h-4 text-[#C56A43] dark:text-[#C97A4D]" /> Filter Atelier
+        </h3>
+        <button
+          onClick={resetFilters}
+          className="text-xs text-[#6F665F] dark:text-[#C5BFB8] hover:text-[#3F5B43] dark:hover:text-[#8FAE83] font-semibold flex items-center gap-1 transition-colors"
+        >
+          <RotateCcw className="w-3 h-3" /> Reset
+        </button>
+      </div>
+
+      {/* Search Input */}
+      <div>
+        <label className="block text-xs font-semibold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8] mb-2">Keyword Search</label>
+        <div className="relative">
+          <input
+            type="text"
+            value={filter.search}
+            onChange={(e) => setFilter(prev => ({ ...prev, search: e.target.value }))}
+            placeholder="Search specs or model..."
+            className="w-full pl-9 pr-4 py-2.5 text-xs bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]"
+          />
+          <Search className="w-3.5 h-3.5 text-[#6F665F] dark:text-[#C5BFB8] absolute left-3 top-3" />
+        </div>
+      </div>
+
+      {/* Categories Filter */}
+      <div>
+        <label className="block text-xs font-semibold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8] mb-2">Categories</label>
+        <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+          {categoriesList.map(cat => {
+            const isChecked = filter.categories.includes(cat);
+            return (
+              <label
+                key={cat}
+                className="flex items-center justify-between text-xs cursor-pointer p-2 rounded-xl hover:bg-[#EEE6DA]/50 dark:hover:bg-[#2B2520] transition-colors"
+              >
+                <span className={`font-medium ${isChecked ? 'text-[#3F5B43] dark:text-[#8FAE83] font-bold' : 'text-[#2D241E] dark:text-[#F5F2ED]'}`}>
+                  {cat}
+                </span>
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={() => toggleCategoryFilter(cat)}
+                  className="rounded text-[#3F5B43] focus:ring-[#3F5B43]"
+                />
+              </label>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Brands Filter */}
+      <div>
+        <label className="block text-xs font-semibold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8] mb-2">Manufacturer</label>
+        <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+          {brandsList.map(b => {
+            const isChecked = filter.brands.includes(b);
+            return (
+              <label
+                key={b}
+                className="flex items-center justify-between text-xs cursor-pointer p-2 rounded-xl hover:bg-[#EEE6DA]/50 dark:hover:bg-[#2B2520] transition-colors"
+              >
+                <span className={`font-medium ${isChecked ? 'text-[#3F5B43] dark:text-[#8FAE83] font-bold' : 'text-[#2D241E] dark:text-[#F5F2ED]'}`}>
+                  {b}
+                </span>
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={() => toggleBrandFilter(b)}
+                  className="rounded text-[#3F5B43] focus:ring-[#3F5B43]"
+                />
+              </label>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Price Range Filter */}
+      <div>
+        <div className="flex items-center justify-between text-xs mb-2">
+          <span className="font-semibold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8]">Price Limit</span>
+          <span className="font-serif font-bold text-[#3F5B43] dark:text-[#8FAE83]">{formatCurrency(filter.maxPrice)}</span>
+        </div>
+        <input
+          type="range"
+          min="1000"
+          max="400000"
+          step="5000"
+          value={filter.maxPrice}
+          onChange={(e) => setFilter(prev => ({ ...prev, maxPrice: Number(e.target.value) }))}
+          className="w-full accent-[#3F5B43] dark:accent-[#8FAE83]"
+        />
+      </div>
+    </div>
+  );
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Top Header & Toolbar */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-[#D8CFC2] dark:border-[#4A433D]">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white">
-            Computer Hardware & Device Catalog
+          <span className="text-[10px] uppercase font-semibold tracking-widest text-[#C56A43] dark:text-[#C97A4D]">
+            Curated Showroom Collection
+          </span>
+          <h1 className="text-3xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">
+            Hardware Atelier & Catalog
           </h1>
-          <p className="text-xs text-slate-500">
-            Showing {filteredProducts.length} of {products.length} genuine devices & components
+          <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8] mt-1">
+            Showing {filteredProducts.length} of {products.length} luxury laptops, workstations, and components.
           </p>
         </div>
 
-        <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
-          {/* Mobile Filter Button */}
+        {/* View Mode & Sort Controls */}
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          {/* Mobile Filter Toggle */}
           <button
-            onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-            className="md:hidden px-3.5 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold flex items-center gap-2"
+            onClick={() => setMobileFilterOpen(true)}
+            className="md:hidden px-4 py-2.5 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] text-xs font-semibold text-[#2D241E] dark:text-[#F5F2ED] rounded-full flex items-center gap-2"
           >
-            <SlidersHorizontal className="w-4 h-4" /> Filters
+            <SlidersHorizontal className="w-4 h-4 text-[#C56A43]" /> Filters
           </button>
 
           {/* Sort Selector */}
-          <div className="flex items-center gap-2 text-xs">
-            <span className="text-slate-500 font-medium hidden sm:inline">Sort By:</span>
+          <div className="relative flex-1 md:flex-initial">
             <select
               value={filter.sortBy}
-              onChange={(e: any) => setFilter(prev => ({ ...prev, sortBy: e.target.value }))}
-              className="px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl font-bold text-slate-900 dark:text-white"
+              onChange={(e) => setFilter(prev => ({ ...prev, sortBy: e.target.value as any }))}
+              className="w-full pl-4 pr-10 py-2.5 text-xs font-semibold bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] shadow-sm appearance-none cursor-pointer"
             >
-              <option value="popularity">Most Popular</option>
+              <option value="popular">Sort: Most Popular</option>
               <option value="price-low">Price: Low to High</option>
               <option value="price-high">Price: High to Low</option>
               <option value="rating">Highest Rated</option>
-              <option value="discount">Biggest Discount %</option>
+              <option value="discount">Biggest Savings</option>
             </select>
+            <ChevronDown className="w-4 h-4 text-[#6F665F] absolute right-3 top-3 pointer-events-none" />
           </div>
 
-          {/* View Mode Switcher */}
-          <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800">
+          {/* View Mode Toggle Buttons */}
+          <div className="flex items-center gap-1 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] p-1 rounded-full shadow-sm">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-1.5 rounded-lg transition-colors ${viewMode === 'grid' ? 'bg-white dark:bg-slate-800 text-blue-600 shadow-sm' : 'text-slate-400'}`}
+              className={`p-2 rounded-full transition-colors ${viewMode === 'grid' ? 'bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512]' : 'text-[#6F665F] dark:text-[#C5BFB8]'}`}
               title="Grid View"
             >
               <Grid className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`p-1.5 rounded-lg transition-colors ${viewMode === 'list' ? 'bg-white dark:bg-slate-800 text-blue-600 shadow-sm' : 'text-slate-400'}`}
+              className={`p-2 rounded-full transition-colors ${viewMode === 'list' ? 'bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512]' : 'text-[#6F665F] dark:text-[#C5BFB8]'}`}
               title="List View"
             >
               <List className="w-4 h-4" />
@@ -153,146 +257,55 @@ export const ProductsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+      {/* Main Catalog Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        {/* Filter Sidebar */}
-        <aside className={`lg:block ${mobileFilterOpen ? 'block' : 'hidden'} lg:col-span-1 bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-6 sticky top-24`}>
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <SlidersHorizontal className="w-4 h-4 text-blue-600" /> Filter Hardware
-            </h3>
-            <button
-              onClick={resetFilters}
-              className="text-[11px] font-bold text-rose-500 hover:underline flex items-center gap-1"
-            >
-              <RotateCcw className="w-3 h-3" /> Reset
-            </button>
-          </div>
+        {/* Desktop Sidebar */}
+        <div className="hidden lg:block lg:col-span-1 p-6 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl shadow-sm h-fit sticky top-28">
+          <SidebarContent />
+        </div>
 
-          {/* Search filter input */}
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-              Search Keywords
-            </label>
-            <input
-              type="text"
-              value={filter.search}
-              onChange={(e) => setFilter(prev => ({ ...prev, search: e.target.value }))}
-              placeholder="e.g. RTX 4080, OLED..."
-              className="w-full px-3 py-2 text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
-            />
-          </div>
-
-          {/* Category Filter */}
-          <div className="space-y-2">
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-              Categories
-            </label>
-            <div className="space-y-1.5 text-xs max-h-40 overflow-y-auto pr-1">
-              {categoriesList.map(cat => (
-                <label key={cat} className="flex items-center gap-2 cursor-pointer text-slate-700 dark:text-slate-300">
-                  <input
-                    type="checkbox"
-                    checked={filter.categories.includes(cat)}
-                    onChange={() => toggleCategoryFilter(cat)}
-                    className="rounded text-blue-600 focus:ring-blue-500"
-                  />
-                  <span>{cat}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Brand Filter */}
-          <div className="space-y-2">
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-              Brands
-            </label>
-            <div className="space-y-1.5 text-xs max-h-40 overflow-y-auto pr-1">
-              {brandsList.map(brand => (
-                <label key={brand} className="flex items-center gap-2 cursor-pointer text-slate-700 dark:text-slate-300">
-                  <input
-                    type="checkbox"
-                    checked={filter.brands.includes(brand)}
-                    onChange={() => toggleBrandFilter(brand)}
-                    className="rounded text-blue-600 focus:ring-blue-500"
-                  />
-                  <span>{brand}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Price Filter */}
-          <div className="space-y-2">
-            <div className="flex justify-between text-xs font-bold text-slate-900 dark:text-white">
-              <span>Max Price:</span>
-              <span>{formatCurrency(filter.maxPrice)}</span>
-            </div>
-            <input
-              type="range"
-              min={8000}
-              max={415000}
-              step={5000}
-              value={filter.maxPrice}
-              onChange={(e) => setFilter(prev => ({ ...prev, maxPrice: Number(e.target.value) }))}
-              className="w-full accent-blue-600 cursor-pointer"
-            />
-          </div>
-
-          {/* Minimum Rating */}
-          <div className="space-y-2">
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-              Minimum Rating
-            </label>
-            <div className="flex gap-2">
-              {[0, 4, 4.5].map(r => (
-                <button
-                  key={r}
-                  onClick={() => setFilter(prev => ({ ...prev, minRating: r }))}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${
-                    filter.minRating === r
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300'
-                  }`}
-                >
-                  {r === 0 ? 'All' : `${r}★+`}
-                </button>
-              ))}
-            </div>
-          </div>
-        </aside>
-
-        {/* Product Cards Container */}
-        <main className="lg:col-span-3 space-y-6">
+        {/* Products Grid */}
+        <div className="lg:col-span-3">
           {filteredProducts.length === 0 ? (
-            <div className="text-center py-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 space-y-3">
-              <Search className="w-12 h-12 text-slate-300 dark:text-slate-700 mx-auto" />
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">No products found</h3>
-              <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                No hardware matches your active filters. Try adjusting price range or clearing keyword search.
+            <div className="text-center py-20 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl p-8 space-y-4">
+              <Search className="w-12 h-12 text-[#C56A43] mx-auto opacity-60" />
+              <h3 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">No Hardware Matches Found</h3>
+              <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8] max-w-md mx-auto">
+                Try relaxing your search terms or resetting filters to explore our full hardware collection.
               </p>
               <button
                 onClick={resetFilters}
-                className="px-4 py-2 bg-blue-600 text-white font-bold text-xs rounded-xl"
+                className="px-6 py-2.5 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] text-white dark:text-[#181512] font-semibold text-xs rounded-full shadow-sm"
               >
-                Clear All Filters
+                Reset All Filters
               </button>
             </div>
           ) : (
-            <div className={
-              viewMode === 'grid'
-                ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6'
-                : 'space-y-4'
-            }>
+            <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6' : 'space-y-4'}>
               {filteredProducts.map(product => (
                 <ProductCard key={product.id} product={product} viewMode={viewMode} />
               ))}
             </div>
           )}
-        </main>
+        </div>
       </div>
+
+      {/* Mobile Drawer Filter */}
+      {mobileFilterOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end bg-[#181512]/75 backdrop-blur-md">
+          <div className="w-full max-w-xs bg-[#FFFDF8] dark:bg-[#221D19] h-full p-6 overflow-y-auto shadow-2xl space-y-6">
+            <div className="flex items-center justify-between border-b border-[#D8CFC2] dark:border-[#4A433D] pb-3">
+              <h3 className="font-serif font-bold text-base text-[#2D241E] dark:text-[#F5F2ED]">Filters</h3>
+              <button onClick={() => setMobileFilterOpen(false)} className="p-1 rounded-full text-[#6F665F]">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <SidebarContent />
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

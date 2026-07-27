@@ -4,17 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Wrench, 
   User, 
-  Mail, 
-  Phone, 
-  MapPin, 
   Calendar, 
-  Clock, 
   Upload, 
   Home, 
   Building2, 
-  CheckCircle2, 
-  ArrowRight,
-  Sparkles
+  ArrowRight
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -80,67 +74,67 @@ export const ServiceBookingPage: React.FC = () => {
       
       {/* Title */}
       <div className="text-center space-y-2">
-        <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-cyan-400 text-xs font-bold tracking-wider uppercase">
-          Online Appointment Portal
+        <span className="px-3.5 py-1 rounded-full bg-[#3F5B43]/15 dark:bg-[#8FAE83]/15 text-[#3F5B43] dark:text-[#8FAE83] text-xs font-semibold tracking-wider uppercase">
+          Online Concierge Booking Portal
         </span>
-        <h1 className="text-3xl font-black text-slate-900 dark:text-white">
-          Book Computer & Device Service
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">
+          Book Technical Service & Diagnostics
         </h1>
-        <p className="text-xs text-slate-500 dark:text-slate-400">
-          Schedule an in-store appointment or request a certified technician home visit.
+        <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8]">
+          Schedule a flagship showroom appointment or request a certified artisan home visit.
         </p>
       </div>
 
       {/* Form Container */}
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl space-y-8 text-xs">
+      <form onSubmit={handleSubmit} className="bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl p-6 sm:p-10 shadow-md space-y-8 text-xs">
         
         {/* Step 1: Customer Information */}
         <div className="space-y-4">
-          <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-2">
-            <User className="w-4 h-4 text-blue-600" /> 1. Customer Contact Details
+          <h3 className="text-base font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] flex items-center gap-2 border-b border-[#D8CFC2]/60 dark:border-[#4A433D]/60 pb-3">
+            <User className="w-4 h-4 text-[#3F5B43] dark:text-[#8FAE83]" /> 1. Client Details
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Full Name</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Full Name</label>
               <input
                 type="text"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 required
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
               />
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Email Address</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
               />
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Phone Number</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Phone Number</label>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
               />
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Address (For Home Visit)</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Address (For Home Visit)</label>
               <input
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
               />
             </div>
           </div>
@@ -148,17 +142,17 @@ export const ServiceBookingPage: React.FC = () => {
 
         {/* Step 2: Service & Device Description */}
         <div className="space-y-4">
-          <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-2">
-            <Wrench className="w-4 h-4 text-blue-600" /> 2. Device & Issue Details
+          <h3 className="text-base font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] flex items-center gap-2 border-b border-[#D8CFC2]/60 dark:border-[#4A433D]/60 pb-3">
+            <Wrench className="w-4 h-4 text-[#3F5B43] dark:text-[#8FAE83]" /> 2. Device & Issue Details
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Service Type</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Service Category</label>
               <select
                 value={serviceType}
                 onChange={(e) => setServiceType(e.target.value)}
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-semibold"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] font-semibold"
               >
                 <option value="Laptop Screen & Micro-soldering Repair">Laptop Screen & Micro-soldering Repair</option>
                 <option value="Desktop Power & GPU Diagnostics">Desktop Power & GPU Diagnostics</option>
@@ -170,69 +164,69 @@ export const ServiceBookingPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Device Model & Serial</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Device Model & Serial</label>
               <input
                 type="text"
                 value={deviceModel}
                 onChange={(e) => setDeviceModel(e.target.value)}
                 placeholder="e.g. MacBook Pro 16 / Dell XPS 15"
                 required
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Problem Description</label>
+            <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Problem Description</label>
             <textarea
               value={problemDescription}
               onChange={(e) => setProblemDescription(e.target.value)}
               rows={3}
-              placeholder="Describe what happens when you turn on the computer or printer..."
-              className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+              placeholder="Describe symptoms, error codes, or thermal behavior..."
+              className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-2xl text-[#2D241E] dark:text-[#F5F2ED]"
             />
           </div>
 
           {/* Photo Attachment */}
           <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">
               Upload Device Photo (Optional)
             </label>
             <button
               type="button"
               onClick={handleImageUploadSim}
-              className="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl flex items-center gap-2 font-bold"
+              className="px-5 py-2.5 bg-[#EEE6DA] dark:bg-[#2B2520] hover:bg-[#E5DDD0] text-[#2D241E] dark:text-[#F5F2ED] rounded-full flex items-center gap-2 font-semibold"
             >
-              <Upload className="w-4 h-4 text-blue-500" />
-              <span>{uploadedImages.length > 0 ? 'Photo Attached ✓' : 'Attach Photo of Broken Screen / Error'}</span>
+              <Upload className="w-4 h-4 text-[#C56A43]" />
+              <span>{uploadedImages.length > 0 ? 'Photo Attached ✓' : 'Attach Photo of Physical Damage'}</span>
             </button>
           </div>
         </div>
 
         {/* Step 3: Preferred Date & Location */}
         <div className="space-y-4">
-          <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-2">
-            <Calendar className="w-4 h-4 text-blue-600" /> 3. Schedule & Location
+          <h3 className="text-base font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] flex items-center gap-2 border-b border-[#D8CFC2]/60 dark:border-[#4A433D]/60 pb-3">
+            <Calendar className="w-4 h-4 text-[#3F5B43] dark:text-[#8FAE83]" /> 3. Schedule & Appointment Mode
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Preferred Date</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Preferred Date</label>
               <input
                 type="date"
                 value={preferredDate}
                 onChange={(e) => setPreferredDate(e.target.value)}
                 required
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-semibold"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] font-semibold"
               />
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Preferred Time Slot</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Preferred Time Slot</label>
               <select
                 value={preferredTime}
                 onChange={(e) => setPreferredTime(e.target.value)}
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-semibold"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] font-semibold"
               >
                 <option value="09:00 AM - 11:00 AM">09:00 AM - 11:00 AM</option>
                 <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM</option>
@@ -243,37 +237,37 @@ export const ServiceBookingPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2">Service Location Mode</label>
+            <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-2">Location Preference</label>
             <div className="grid grid-cols-2 gap-4">
               <button
                 type="button"
                 onClick={() => setServiceLocation('Store Visit')}
-                className={`p-4 rounded-2xl border text-left flex items-center gap-3 transition-all ${
+                className={`p-4 rounded-3xl border text-left flex items-center gap-3 transition-all ${
                   serviceLocation === 'Store Visit'
-                    ? 'border-blue-600 bg-blue-50/50 dark:bg-blue-950/40 text-blue-600 dark:text-cyan-400'
-                    : 'border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300'
+                    ? 'border-[#3F5B43] dark:border-[#8FAE83] bg-[#3F5B43]/10 dark:bg-[#8FAE83]/10 text-[#3F5B43] dark:text-[#8FAE83]'
+                    : 'border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED]'
                 }`}
               >
                 <Building2 className="w-5 h-5 shrink-0" />
                 <div>
-                  <div className="font-bold">Store Visit</div>
-                  <div className="text-[10px] text-slate-500">Bring device to flagship lab</div>
+                  <div className="font-serif font-bold">Showroom Visit</div>
+                  <div className="text-[10px] text-[#6F665F] dark:text-[#C5BFB8]">Bring device to flagship lab</div>
                 </div>
               </button>
 
               <button
                 type="button"
                 onClick={() => setServiceLocation('Home Visit')}
-                className={`p-4 rounded-2xl border text-left flex items-center gap-3 transition-all ${
+                className={`p-4 rounded-3xl border text-left flex items-center gap-3 transition-all ${
                   serviceLocation === 'Home Visit'
-                    ? 'border-blue-600 bg-blue-50/50 dark:bg-blue-950/40 text-blue-600 dark:text-cyan-400'
-                    : 'border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300'
+                    ? 'border-[#3F5B43] dark:border-[#8FAE83] bg-[#3F5B43]/10 dark:bg-[#8FAE83]/10 text-[#3F5B43] dark:text-[#8FAE83]'
+                    : 'border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED]'
                 }`}
               >
                 <Home className="w-5 h-5 shrink-0" />
                 <div>
-                  <div className="font-bold">Home/Office Visit</div>
-                  <div className="text-[10px] text-slate-500">Certified tech visits your doorstep</div>
+                  <div className="font-serif font-bold">Doorstep Visit</div>
+                  <div className="text-[10px] text-[#6F665F] dark:text-[#C5BFB8]">Master technician visit</div>
                 </div>
               </button>
             </div>
@@ -283,13 +277,13 @@ export const ServiceBookingPage: React.FC = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:brightness-110 text-white font-bold text-sm rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2"
+          className="w-full py-4 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold text-xs rounded-full shadow-sm transition-all flex items-center justify-center gap-2"
         >
           {isSubmitting ? (
-            <span>Creating Repair Booking...</span>
+            <span>Processing Booking Request...</span>
           ) : (
             <>
-              <span>Submit Appointment Request & Get Repair ID</span>
+              <span>Confirm Appointment & Generate Repair Ticket</span>
               <ArrowRight className="w-4 h-4" />
             </>
           )}

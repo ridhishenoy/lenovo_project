@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { Bot, Sparkles, Send, X, Cpu, IndianRupee, Briefcase, RefreshCw, CheckCircle2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { Bot, Sparkles, X, CheckCircle2 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export const AiAdvisorModal: React.FC = () => {
   const { isAiAdvisorOpen, setIsAiAdvisorOpen } = useApp();
 
   const [query, setQuery] = useState('');
-  const [budget, setBudget] = useState('1500');
+  const [budget, setBudget] = useState('150000');
   const [useCase, setUseCase] = useState('Gaming & Video Editing');
   const [preferredBrand, setPreferredBrand] = useState('Any Top Brand');
 
@@ -41,7 +41,7 @@ export const AiAdvisorModal: React.FC = () => {
       }
     } catch (err) {
       setResponseResult({
-        advice: `Based on your budget of ₹${budget} for ${useCase}, we recommend considering high-performance laptops with Intel Core Ultra or AMD Ryzen 7, 32GB RAM, and RTX 4070 GPU.`,
+        advice: `Based on your budget of ₹${budget} for ${useCase}, we recommend considering high-performance workstations with Intel Core Ultra or AMD Ryzen 7, 32GB RAM, and RTX GPU.`,
         suggestedSpecs: ['32GB LPDDR5X RAM', '1TB PCIe 4.0 NVMe SSD', 'RTX 4070 8GB GPU', '2.8K OLED 120Hz Screen'],
         topMatchCategory: 'High Performance Laptop',
         tips: 'Make sure to select at least a 2-year manufacturer onsite warranty for peace of mind.'
@@ -52,163 +52,115 @@ export const AiAdvisorModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#181512]/80 backdrop-blur-md">
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
+        initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
+        exit={{ scale: 0.95, opacity: 0 }}
+        className="relative w-full max-w-2xl bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
       >
-        {/* Glow ambient background */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-lenovo-red/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/20 rounded-full blur-3xl pointer-events-none" />
-
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 shrink-0">
+        <div className="flex items-center justify-between pb-4 border-b border-[#D8CFC2]/60 dark:border-[#4A433D]/60 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="bg-lenovo-red text-white font-black text-xs px-2.5 py-1.5 shadow-md flex items-center justify-center">
-              <Bot className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-2xl bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] flex items-center justify-center shadow-sm">
+              <Bot className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                NexusTech AI Advisor <Sparkles className="w-4 h-4 text-lenovo-red" />
+              <h3 className="text-lg font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] flex items-center gap-2">
+                AI Hardware Concierge <Sparkles className="w-4 h-4 text-[#C79A3B]" />
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Powered by Gemini AI • Lenovo Legion, ThinkPad & Custom Hardware Assistant
+              <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8]">
+                Powered by Gemini AI • Personalized Hardware Advisory
               </p>
             </div>
           </div>
 
           <button
             onClick={() => setIsAiAdvisorOpen(false)}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-1 rounded-full text-[#6F665F] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520]"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Content area */}
-        <div className="flex-1 overflow-y-auto py-6 space-y-6">
-          {!responseResult ? (
-            <form onSubmit={handleConsult} className="space-y-4 text-xs">
+        {/* Modal Body */}
+        <div className="flex-1 overflow-y-auto py-6 space-y-6 text-xs">
+          <form onSubmit={handleConsult} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  What are you looking for or trying to solve?
-                </label>
-                <textarea
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="e.g. I need a laptop for 4K video editing and college engineering, or my computer is making beep sounds on startup..."
-                  rows={3}
-                  className="w-full p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl text-slate-900 dark:text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Budget Limit (₹)</label>
+                <input
+                  type="number"
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                  className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
-                    <IndianRupee className="w-3.5 h-3.5 text-emerald-500" /> Estimated Budget (₹)
-                  </label>
-                  <input
-                    type="number"
-                    value={budget}
-                    onChange={(e) => setBudget(e.target.value)}
-                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white font-semibold"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
-                    <Briefcase className="w-3.5 h-3.5 text-blue-500" /> Primary Workload
-                  </label>
-                  <select
-                    value={useCase}
-                    onChange={(e) => setUseCase(e.target.value)}
-                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white font-semibold"
-                  >
-                    <option value="Gaming & Esports">Gaming & Esports</option>
-                    <option value="Gaming & Video Editing">Gaming & Video Editing</option>
-                    <option value="Software Dev & AI Workstation">Software Dev & AI Workstation</option>
-                    <option value="Business & Office Productivity">Business & Office Productivity</option>
-                    <option value="Graphic Design & 3D Rendering">Graphic Design & 3D Rendering</option>
-                    <option value="College / Student">College / Student</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
-                    <Cpu className="w-3.5 h-3.5 text-purple-500" /> Preferred Brand
-                  </label>
-                  <select
-                    value={preferredBrand}
-                    onChange={(e) => setPreferredBrand(e.target.value)}
-                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white font-semibold"
-                  >
-                    <option value="Any Top Brand">Any Top Brand</option>
-                    <option value="Dell">Dell</option>
-                    <option value="Apple">Apple</option>
-                    <option value="ASUS">ASUS</option>
-                    <option value="Lenovo">Lenovo</option>
-                    <option value="HP">HP</option>
-                  </select>
-                </div>
+              <div>
+                <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Primary Workload</label>
+                <select
+                  value={useCase}
+                  onChange={(e) => setUseCase(e.target.value)}
+                  className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] font-semibold"
+                >
+                  <option value="Gaming & Video Editing">Gaming & Video Editing</option>
+                  <option value="3D Rendering & CAD">3D Rendering & CAD</option>
+                  <option value="Business & Office Productivity">Business & Office Productivity</option>
+                  <option value="Programming & AI Development">Programming & AI Development</option>
+                </select>
               </div>
+            </div>
 
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full py-3.5 px-6 bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:brightness-110 text-white font-extrabold text-sm rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2"
-              >
-                {isLoading ? (
-                  <>
-                    <RefreshCw className="w-4 h-4 animate-spin" /> Analyzing Requirements with Gemini AI...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="w-4 h-4" /> Get AI Advisor Recommendations
-                  </>
-                )}
-              </button>
-            </form>
-          ) : (
-            <div className="space-y-4 animate-fade-in">
-              <div className="p-4 bg-cyan-950/30 border border-cyan-500/30 rounded-2xl text-xs space-y-3">
-                <div className="flex items-center gap-2 font-bold text-cyan-400 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                  Recommended Setup: {responseResult.topMatchCategory || 'Custom Hardware Match'}
-                </div>
-                <p className="text-slate-300 leading-relaxed">
-                  {responseResult.advice || responseResult.recommendation}
-                </p>
+            <div>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Specific Hardware Requirements</label>
+              <textarea
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="e.g. Need lightweight OLED laptop with silent thermals..."
+                rows={2}
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-2xl text-[#2D241E] dark:text-[#F5F2ED]"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-3.5 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold text-xs rounded-full shadow-sm flex items-center justify-center gap-2 transition-all"
+            >
+              {isLoading ? (
+                <span>Analyzing Hardware Database...</span>
+              ) : (
+                <>
+                  <Sparkles className="w-4 h-4 text-[#D4AF5A]" />
+                  <span>Generate Concierge Recommendation</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* AI Response Box */}
+          {responseResult && (
+            <div className="p-6 bg-[#EEE6DA]/50 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl space-y-4 animate-fade-in">
+              <div className="flex items-center gap-2 text-[#3F5B43] dark:text-[#8FAE83] font-serif font-bold text-sm">
+                <CheckCircle2 className="w-4 h-4" /> Recommendation Summary
               </div>
+              <p className="text-xs text-[#2D241E] dark:text-[#F5F2ED] leading-relaxed">
+                {responseResult.advice}
+              </p>
 
               {responseResult.suggestedSpecs && (
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Key Specs To Target</h4>
-                  <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-1.5 pt-2 border-t border-[#D8CFC2]/60 dark:border-[#4A433D]/60">
+                  <span className="font-bold text-[#6F665F] dark:text-[#C5BFB8]">Suggested Specifications:</span>
+                  <div className="flex flex-wrap gap-2 pt-1">
                     {responseResult.suggestedSpecs.map((spec: string, idx: number) => (
-                      <div key={idx} className="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                        <Cpu className="w-3.5 h-3.5 text-cyan-500 shrink-0" />
-                        <span>{spec}</span>
-                      </div>
+                      <span key={idx} className="px-3 py-1 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] rounded-full text-[11px] font-semibold">
+                        {spec}
+                      </span>
                     ))}
                   </div>
                 </div>
               )}
-
-              {responseResult.tips && (
-                <div className="p-3 bg-slate-100 dark:bg-slate-800/80 rounded-xl text-xs text-slate-600 dark:text-slate-300">
-                  <span className="font-bold text-amber-500">Pro Tip: </span>
-                  {responseResult.tips}
-                </div>
-              )}
-
-              <button
-                onClick={() => setResponseResult(null)}
-                className="w-full py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-semibold text-xs rounded-xl transition-colors"
-              >
-                Ask Another Question
-              </button>
             </div>
           )}
         </div>

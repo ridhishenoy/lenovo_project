@@ -31,7 +31,7 @@ const AppContent: React.FC = () => {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200 selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#F7F3ED] dark:bg-[#181512] text-[#2D241E] dark:text-[#F5F2ED] transition-colors duration-300 selection:bg-[#3F5B43] selection:text-white">
       {/* Toast Notifications */}
       <ToastContainer />
 

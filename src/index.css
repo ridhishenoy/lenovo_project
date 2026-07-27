@@ -1,121 +1,238 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-slate-50: #FAF7F2;
-  --color-slate-100: #F2EAE1;
-  --color-slate-200: #E6DACB;
-  --color-slate-300: #D8C5B0;
-  --color-slate-400: #BEA88F;
-  --color-slate-500: #A18A71;
-  --color-slate-600: #86705B;
-  --color-slate-700: #6F5B49;
-  --color-slate-800: #574637;
-  --color-slate-900: #2E251E;
-  --color-slate-950: #1C1713;
+  /* Earth-inspired Primary & Palette Tokens */
+  --color-earth-bg: #F7F3ED;
+  --color-earth-bg-sec: #FFFDF8;
+  --color-earth-card: #EEE6DA;
+  --color-earth-card-elevated: #E4D9CA;
+  
+  --color-forest: #3F5B43;
+  --color-forest-dark: #2F4734;
+  --color-olive: #708A58;
+  --color-terracotta: #C56A43;
+  --color-terracotta-hover: #AA5A39;
+  --color-mustard: #C79A3B;
+  
+  --color-espresso: #2D241E;
+  --color-stone: #6F665F;
+  --color-warm-taupe: #D8CFC2;
+  
+  --color-sage: #8FAE83;
+  --color-sage-hover: #78976E;
+  --color-copper: #C97A4D;
+  --color-copper-hover: #B96738;
+  --color-antique-gold: #D4AF5A;
+  
+  --color-discount: #B54A30;
+  --color-bestseller: #D4AF5A;
+  --color-newarrival: #8FAE83;
+  --color-sale: #C97A4D;
+  --color-verified: #4F7A57;
 
-  --color-blue-50: #F4F6F3;
-  --color-blue-100: #E6ECE3;
-  --color-blue-200: #CBD8C5;
-  --color-blue-300: #A9BA9B;
-  --color-blue-400: #81A070;
-  --color-blue-500: #5E7F51;
-  --color-blue-600: #49663D;
-  --color-blue-700: #39502F;
-  --color-blue-800: #2E4026;
-  --color-blue-900: #263320;
-  --color-blue-950: #121A0F;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
 
-  --color-cyan-50: #FDF6F2;
-  --color-cyan-100: #FBEBDD;
-  --color-cyan-200: #F5D3BB;
-  --color-cyan-300: #EEB591;
-  --color-cyan-400: #E69163;
-  --color-cyan-500: #DD703D;
-  --color-cyan-600: #CE5428;
-  --color-cyan-700: #AB401E;
-  --color-cyan-800: #89331B;
-  --color-cyan-900: #6F2C1A;
-  --color-cyan-950: #3C130B;
+:root {
+  --bg-app: #F7F3ED;
+  --bg-surface: #FFFDF8;
+  --bg-card: #EEE6DA;
+  --bg-card-elevated: #E5DDD0;
+  
+  --color-primary: #3F5B43;
+  --color-primary-hover: #2F4734;
+  --color-primary-text: #FFFFFF;
+  
+  --color-secondary: #708A58;
+  
+  --color-accent: #C56A43;
+  --color-accent-hover: #AA5A39;
+  --color-accent-text: #FFFFFF;
+  
+  --color-highlight: #C79A3B;
+  
+  --text-main: #2D241E;
+  --text-muted: #6F665F;
+  
+  --border-main: #D8CFC2;
+  --border-light: rgba(216, 207, 194, 0.6);
+  
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.30);
+  --glass-blur: 16px;
+  
+  --hero-gradient: linear-gradient(135deg, #F7F3ED 0%, #E7DDCF 100%);
+  --cta-gradient: linear-gradient(135deg, #3F5B43 0%, #708A58 100%);
+  --card-gradient: linear-gradient(135deg, #FFFDF8 0%, #EEE6DA 100%);
 
-  --color-indigo-50: #F2F5F3;
-  --color-indigo-100: #DFE7E2;
-  --color-indigo-200: #C0CFC5;
-  --color-indigo-300: #97AF9F;
-  --color-indigo-400: #6E8D77;
-  --color-indigo-500: #4F7057;
-  --color-indigo-600: #3F5945;
-  --color-indigo-700: #334737;
-  --color-indigo-800: #29382C;
-  --color-indigo-900: #222E25;
-  --color-indigo-950: #111812;
+  --shadow-earth-sm: 0 2px 8px rgba(45, 36, 30, 0.04);
+  --shadow-earth-md: 0 8px 24px rgba(45, 36, 30, 0.07);
+  --shadow-earth-lg: 0 16px 40px rgba(45, 36, 30, 0.10);
+}
 
-  --color-purple-50: #FCF9F1;
-  --color-purple-100: #F6EDB9;
-  --color-purple-200: #EEDE99;
-  --color-purple-300: #DEC773;
-  --color-purple-400: #D0B051;
-  --color-purple-500: #B79536;
-  --color-purple-600: #9B7C27;
-  --color-purple-700: #7E631F;
-  --color-purple-800: #654E1A;
-  --color-purple-900: #534017;
-  --color-purple-950: #2C210B;
+.dark {
+  --bg-app: #181512;
+  --bg-surface: #221D19;
+  --bg-card: #2B2520;
+  --bg-card-elevated: #352E28;
+  
+  --color-primary: #8FAE83;
+  --color-primary-hover: #78976E;
+  --color-primary-text: #181512;
+  
+  --color-secondary: #6F8B60;
+  
+  --color-accent: #C97A4D;
+  --color-accent-hover: #B96738;
+  --color-accent-text: #F5F2ED;
+  
+  --color-highlight: #D4AF5A;
+  
+  --text-main: #F5F2ED;
+  --text-muted: #C5BFB8;
+  
+  --border-main: #4A433D;
+  --border-light: rgba(74, 67, 61, 0.6);
+  
+  --glass-bg: rgba(40, 35, 30, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 20px;
+  
+  --hero-gradient: linear-gradient(135deg, #181512 0%, #2B2520 100%);
+  --cta-gradient: linear-gradient(135deg, #3F5B43 0%, #708A58 100%);
+  --card-gradient: linear-gradient(135deg, #352E28 0%, #221D19 100%);
 
-  --color-lenovo-red: #C35B3B;
-  --color-lenovo-red-hover: #A3482A;
-  --color-lenovo-black: #1C1713;
-  --color-lenovo-dark: #2A231E;
-
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-serif: 'Playfair Display', serif;
+  --shadow-earth-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-earth-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-earth-lg: 0 16px 40px rgba(0, 0, 0, 0.45);
 }
 
 @layer base {
-  :root {
-    --lenovo-red: var(--color-lenovo-red);
-    --lenovo-red-hover: var(--color-lenovo-red-hover);
-    --lenovo-black: var(--color-lenovo-black);
-    --lenovo-dark: var(--color-lenovo-dark);
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif-title {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
   }
 }
 
-/* Custom Lenovo Accent Utilities */
-.bg-lenovo-red {
-  background-color: var(--color-lenovo-red);
+/* Glassmorphism utility classes */
+.earth-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
 }
 
-.hover\:bg-lenovo-red-hover:hover {
-  background-color: var(--color-lenovo-red-hover);
+.earth-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-main);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-earth-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.text-lenovo-red {
-  color: var(--color-lenovo-red);
+.earth-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-earth-md);
 }
 
-.border-lenovo-red {
-  border-color: var(--color-lenovo-red);
+/* Premium Buttons */
+.earth-btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(63, 91, 67, 0.2);
 }
 
-/* Iconic Lenovo Tag Ribbon Badge Style */
-.lenovo-tag {
-  background-color: var(--color-lenovo-red);
-  color: #ffffff;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.25rem 0.625rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  box-shadow: 0 4px 12px rgba(195, 91, 59, 0.25);
+.earth-btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(63, 91, 67, 0.3);
 }
 
-/* Smooth sleek Lenovos Legion glow effect */
-.legion-glow {
-  box-shadow: 0 0 25px rgba(195, 91, 59, 0.2);
+.earth-btn-secondary {
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(197, 106, 67, 0.2);
 }
 
-.legion-glow-cyan {
-  box-shadow: 0 0 25px rgba(94, 127, 81, 0.2);
+.earth-btn-secondary:hover {
+  background-color: var(--color-accent-hover);
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(197, 106, 67, 0.3);
 }
 
+.earth-btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--border-main);
+  color: var(--text-main);
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.earth-btn-outline:hover {
+  border-color: var(--color-primary);
+  background-color: var(--glass-bg);
+  color: var(--color-primary);
+}
+
+/* Badges */
+.badge-discount {
+  background-color: #B54A30;
+  color: #FFFFFF;
+}
+
+.badge-bestseller {
+  background-color: #D4AF5A;
+  color: #181512;
+}
+
+.badge-newarrival {
+  background-color: #8FAE83;
+  color: #181512;
+}
+
+.badge-sale {
+  background-color: #C97A4D;
+  color: #FFFFFF;
+}
+
+.badge-verified {
+  background-color: #4F7A57;
+  color: #FFFFFF;
+}
+
+/* Custom Scrollbar for Luxury Aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-main);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

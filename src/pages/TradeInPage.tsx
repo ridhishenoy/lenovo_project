@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { formatCurrency } from '../lib/utils';
 import { 
-  ArrowLeftRight, 
   Laptop, 
-  Cpu, 
   CheckCircle2, 
-  DollarSign, 
   Sparkles, 
   Ticket, 
   ShieldCheck,
@@ -30,7 +27,7 @@ export const TradeInPage: React.FC = () => {
   const calculateValuation = () => {
     let base = 20750;
     if (brand === 'Apple') base += 16600;
-    if (brand === 'Dell' || brand === 'ASUS') base += 9960;
+    if (brand === 'Dell' || brand === 'ASUS' || brand === 'Lenovo') base += 9960;
     if (processor.includes('i9') || processor.includes('M2') || processor.includes('M3')) base += 18260;
     if (ram === '32 GB+') base += 8300;
     if (condition === 'Flawless') base += 8300;
@@ -43,7 +40,7 @@ export const TradeInPage: React.FC = () => {
   const estimatedValue = calculateValuation();
 
   const handleClaimVoucher = () => {
-    const code = `NEXUS-TRADE-${Math.floor(1000 + Math.random() * 9000)}`;
+    const code = `SHENOY-TRADE-${Math.floor(1000 + Math.random() * 9000)}`;
     setClaimedVoucher(code);
     confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
     showToast(`Trade-in voucher generated: ${code}`, 'success');
@@ -54,31 +51,31 @@ export const TradeInPage: React.FC = () => {
       
       {/* Header */}
       <div className="text-center space-y-2">
-        <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold tracking-wider uppercase">
-          E-Waste Reduction & Instant Credit
+        <span className="px-3.5 py-1 rounded-full bg-[#5E8C61]/15 text-[#5E8C61] dark:text-[#76A46E] text-xs font-semibold tracking-wider uppercase">
+          Sustainable Hardware Exchange Program
         </span>
-        <h1 className="text-3xl font-black text-slate-900 dark:text-white">
-          Old Computer Trade-In Program
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">
+          Computer Trade-In Calculator
         </h1>
-        <p className="text-xs text-slate-500 dark:text-slate-400">
-          Trade in your old laptop or workstation for instant NexusTech store credit toward a brand new flagship PC.
+        <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8]">
+          Exchange your pre-owned laptop or workstation for instant Shenoy Computers store credit toward a luxury flagship PC.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         
         {/* Interactive Device Valuation Form */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 text-xs">
-          <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-            <Laptop className="w-4 h-4 text-blue-600" /> Device Specs & Condition
+        <div className="bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl p-6 sm:p-8 shadow-md space-y-6 text-xs">
+          <h3 className="text-base font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] flex items-center gap-2 border-b border-[#D8CFC2]/60 dark:border-[#4A433D]/60 pb-3">
+            <Laptop className="w-4 h-4 text-[#3F5B43] dark:text-[#8FAE83]" /> Device Specifications & Condition
           </h3>
 
           <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Device Type</label>
+            <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Device Type</label>
             <select
               value={deviceType}
               onChange={(e) => setDeviceType(e.target.value)}
-              className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-semibold"
+              className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] font-semibold"
             >
               <option value="Laptop">Laptop / Ultrabook</option>
               <option value="Desktop">Desktop Tower Rig</option>
@@ -89,106 +86,116 @@ export const TradeInPage: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Brand</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Brand</label>
               <select
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-semibold"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] font-semibold"
               >
                 <option value="Apple">Apple</option>
                 <option value="Dell">Dell</option>
                 <option value="ASUS">ASUS</option>
                 <option value="Lenovo">Lenovo</option>
                 <option value="HP">HP</option>
-                <option value="Custom">Custom Built</option>
               </select>
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Processor</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">RAM Capacity</label>
               <select
-                value={processor}
-                onChange={(e) => setProcessor(e.target.value)}
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-semibold"
+                value={ram}
+                onChange={(e) => setRam(e.target.value)}
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] font-semibold"
               >
-                <option value="Intel Core i5 / Ryzen 5">Intel Core i5 / Ryzen 5</option>
-                <option value="Intel Core i7 / Apple M1">Intel Core i7 / Apple M1</option>
-                <option value="Intel Core i9 / Apple M2/M3">Intel Core i9 / Apple M2/M3</option>
+                <option value="8 GB">8 GB</option>
+                <option value="16 GB">16 GB</option>
+                <option value="32 GB+">32 GB+</option>
               </select>
             </div>
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Physical Condition</label>
+            <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Processor Class</label>
+            <select
+              value={processor}
+              onChange={(e) => setProcessor(e.target.value)}
+              className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED] font-semibold"
+            >
+              <option value="Intel Core i5 / AMD Ryzen 5">Intel Core i5 / AMD Ryzen 5</option>
+              <option value="Intel Core i7 / Apple M1">Intel Core i7 / Apple M1</option>
+              <option value="Intel Core i9 / Apple M2 / M3">Intel Core i9 / Apple M2 / M3</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-2">Physical Cosmetic Condition</label>
             <div className="grid grid-cols-3 gap-2">
-              {(['Flawless', 'Good', 'Fair'] as const).map(c => (
+              {(['Flawless', 'Good', 'Fair'] as const).map((cond) => (
                 <button
                   type="button"
-                  key={c}
-                  onClick={() => setCondition(c)}
-                  className={`py-2 px-3 rounded-xl border font-bold text-center transition-all ${
-                    condition === c
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300'
+                  key={cond}
+                  onClick={() => setCondition(cond)}
+                  className={`p-2.5 rounded-full border text-center font-semibold transition-all ${
+                    condition === cond
+                      ? 'border-[#3F5B43] dark:border-[#8FAE83] bg-[#3F5B43]/15 dark:bg-[#8FAE83]/15 text-[#3F5B43] dark:text-[#8FAE83]'
+                      : 'border-[#D8CFC2] dark:border-[#4A433D] text-[#6F665F]'
                   }`}
                 >
-                  {c}
+                  {cond}
                 </button>
               ))}
             </div>
           </div>
 
-          <label className="flex items-center gap-2 cursor-pointer font-semibold text-slate-700 dark:text-slate-300">
+          <label className="flex items-center gap-2 cursor-pointer font-semibold text-[#2D241E] dark:text-[#F5F2ED] pt-2">
             <input
               type="checkbox"
               checked={hasCharger}
               onChange={(e) => setHasCharger(e.target.checked)}
-              className="rounded text-blue-600"
+              className="rounded text-[#3F5B43]"
             />
-            <span>Original Power Adapter / Charger Included (+ ₹2,490)</span>
+            <span>Includes Original Power Adapter / Charger (+₹2,490)</span>
           </label>
         </div>
 
-        {/* Estimated Valuation & Voucher Banner */}
-        <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950 text-white border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
-          <div className="text-center space-y-2">
-            <span className="text-[10px] uppercase font-bold text-cyan-400 tracking-wider">
-              Instant Estimated Trade-In Quote
-            </span>
-            <div className="text-4xl font-black text-white">{formatCurrency(estimatedValue)}</div>
-            <p className="text-xs text-slate-300">
-              Guaranteed minimum store credit upon in-store hardware inspection or mail-in appraisal.
-            </p>
+        {/* Valuation Result Card */}
+        <div className="bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl p-6 sm:p-8 shadow-md space-y-6 text-xs text-center sticky top-24">
+          <div className="p-6 bg-[#3F5B43] text-white rounded-3xl space-y-2 shadow-sm">
+            <span className="text-[10px] uppercase font-bold tracking-wider text-[#F5F2ED]/80">Instant Valuation Credit</span>
+            <div className="text-4xl font-serif font-bold text-[#D4AF5A]">{formatCurrency(estimatedValue)}</div>
+            <p className="text-[11px] text-[#F5F2ED]/90">Guaranteed credit code applicable at checkout</p>
           </div>
 
-          <div className="space-y-3 pt-2">
-            <div className="p-4 bg-slate-900/80 rounded-2xl border border-slate-800 text-xs space-y-2">
-              <div className="flex items-center gap-2 font-bold text-emerald-400">
-                <CheckCircle2 className="w-4 h-4" /> Free Secure Storage Wipe Included
-              </div>
-              <p className="text-[11px] text-slate-400">
-                DoD 5220.22-M military-grade data sanitization guaranteed on all traded-in hard drives & SSDs.
-              </p>
+          <div className="space-y-3 text-left border-t border-[#D8CFC2]/60 dark:border-[#4A433D]/60 pt-4">
+            <div className="flex items-center gap-2 text-[#2D241E] dark:text-[#F5F2ED] font-semibold">
+              <CheckCircle2 className="w-4 h-4 text-[#5E8C61]" /> Valid for 14 calendar days
             </div>
-
-            {!claimedVoucher ? (
-              <button
-                onClick={handleClaimVoucher}
-                className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:brightness-110 text-slate-950 font-black text-xs rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2"
-              >
-                <Ticket className="w-4 h-4" /> Lock In Quote & Generate Voucher
-              </button>
-            ) : (
-              <div className="p-4 bg-emerald-950/80 border border-emerald-500/50 rounded-2xl text-center space-y-2">
-                <span className="text-[10px] font-bold uppercase text-emerald-400">Your Trade-In Voucher Code</span>
-                <div className="text-xl font-black tracking-widest text-white">{claimedVoucher}</div>
-                <p className="text-[10px] text-slate-300">Present this code at any NexusTech store checkout!</p>
-              </div>
-            )}
+            <div className="flex items-center gap-2 text-[#2D241E] dark:text-[#F5F2ED] font-semibold">
+              <ShieldCheck className="w-4 h-4 text-[#3F5B43]" /> Free Class 100 Data Sanitization
+            </div>
+            <div className="flex items-center gap-2 text-[#2D241E] dark:text-[#F5F2ED] font-semibold">
+              <Building2 className="w-4 h-4 text-[#C56A43]" /> Redeemable in-store or online
+            </div>
           </div>
+
+          {claimedVoucher ? (
+            <div className="p-4 bg-[#5E8C61]/15 border border-[#5E8C61]/30 rounded-2xl space-y-1">
+              <span className="text-[10px] font-bold uppercase text-[#5E8C61]">Trade-In Credit Voucher</span>
+              <div className="text-lg font-serif font-bold text-[#3F5B43] dark:text-[#8FAE83] select-all">{claimedVoucher}</div>
+              <p className="text-[10px] text-[#6F665F]">Use this code at checkout to claim {formatCurrency(estimatedValue)}</p>
+            </div>
+          ) : (
+            <button
+              onClick={handleClaimVoucher}
+              className="w-full py-4 bg-[#C56A43] hover:bg-[#AA5A39] text-white font-semibold text-xs rounded-full shadow-sm transition-all flex items-center justify-center gap-2"
+            >
+              <Ticket className="w-4 h-4" /> Claim Trade-In Store Credit Voucher
+            </button>
+          )}
         </div>
 
       </div>
+
     </div>
   );
 };

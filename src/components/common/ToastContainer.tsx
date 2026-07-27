@@ -15,22 +15,22 @@ export const ToastContainer: React.FC = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            transition={{ duration: 0.2 }}
-            className={`pointer-events-auto flex items-center gap-3 p-4 rounded-xl shadow-xl border backdrop-blur-md text-sm font-medium ${
+            transition={{ duration: 0.25 }}
+            className={`pointer-events-auto flex items-center gap-3 p-4 rounded-2xl shadow-xl border backdrop-blur-md text-xs font-semibold ${
               toast.type === 'success'
-                ? 'bg-emerald-950/90 text-emerald-100 border-emerald-500/30 dark:bg-emerald-950/90 dark:border-emerald-500/40'
+                ? 'bg-[#3F5B43] text-white border-[#5E8C61]'
                 : toast.type === 'error'
-                ? 'bg-rose-950/90 text-rose-100 border-rose-500/30 dark:bg-rose-950/90 dark:border-rose-500/40'
-                : 'bg-slate-900/90 text-slate-100 border-cyan-500/30 dark:bg-slate-900/90'
+                ? 'bg-[#B44A3F] text-white border-[#D2695A]'
+                : 'bg-[#2D241E] text-[#F5F2ED] border-[#C56A43]'
             }`}
           >
-            {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
-            {toast.type === 'error' && <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />}
-            {toast.type === 'info' && <Info className="w-5 h-5 text-cyan-400 shrink-0" />}
+            {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-[#8FAE83] shrink-0" />}
+            {toast.type === 'error' && <AlertCircle className="w-5 h-5 text-white shrink-0" />}
+            {toast.type === 'info' && <Info className="w-5 h-5 text-[#D4AF5A] shrink-0" />}
             <span className="flex-1 leading-snug">{toast.message}</span>
             <button
               onClick={() => removeToast(toast.id)}
-              className="p-1 rounded-lg hover:bg-white/10 transition-colors text-slate-300 hover:text-white"
+              className="p-1 rounded-full hover:bg-white/10 transition-colors text-white"
             >
               <X className="w-4 h-4" />
             </button>

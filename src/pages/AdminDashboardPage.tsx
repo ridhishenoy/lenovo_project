@@ -14,7 +14,9 @@ import {
   DollarSign, 
   TrendingUp, 
   CheckCircle2, 
-  X
+  X,
+  ShieldCheck,
+  Award
 } from 'lucide-react';
 
 export const AdminDashboardPage: React.FC = () => {
@@ -27,7 +29,7 @@ export const AdminDashboardPage: React.FC = () => {
   const [newName, setNewName] = useState('');
   const [newBrand, setNewBrand] = useState('Dell');
   const [newCategory, setNewCategory] = useState('Laptops');
-  const [newPrice, setNewPrice] = useState('1499');
+  const [newPrice, setNewPrice] = useState('149900');
 
   const handleAddProduct = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +48,7 @@ export const AdminDashboardPage: React.FC = () => {
       fullDesc: `${newName} delivers top tier performance with original OEM warranty.`,
       specs: { processor: 'Intel Core i9', ram: '32 GB', storage: '1 TB SSD' },
       technicalDetails: {},
-      warranty: '3 Years Warranty'
+      warranty: '3 Years Premium Onsite Warranty'
     };
 
     setProducts([newProd, ...products]);
@@ -76,35 +78,47 @@ export const AdminDashboardPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-[#D8CFC2] dark:border-[#4A433D]">
         <div>
-          <span className="text-[10px] uppercase font-black tracking-widest text-blue-600 dark:text-cyan-400">
-            NexusTech Management System
+          <span className="text-[10px] uppercase font-semibold tracking-widest text-[#C56A43] dark:text-[#C97A4D]">
+            SHENOY COMPUTERS ATELIER MANAGEMENT
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+          <h1 className="text-3xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">
             Store & Service Command Center
           </h1>
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold">
+        <div className="flex items-center gap-2 bg-[#EEE6DA]/60 dark:bg-[#221D19] p-1.5 rounded-full border border-[#D8CFC2] dark:border-[#4A433D] text-xs font-semibold">
           <button
             onClick={() => setActiveTab('analytics')}
-            className={`px-4 py-2 rounded-xl transition-all ${activeTab === 'analytics' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-600 dark:text-slate-400'}`}
+            className={`px-5 py-2 rounded-full transition-all ${
+              activeTab === 'analytics' 
+                ? 'bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] shadow-sm' 
+                : 'text-[#6F665F] dark:text-[#C5BFB8] hover:text-[#2D241E]'
+            }`}
           >
             Analytics
           </button>
           <button
             onClick={() => setActiveTab('products')}
-            className={`px-4 py-2 rounded-xl transition-all ${activeTab === 'products' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-600 dark:text-slate-400'}`}
+            className={`px-5 py-2 rounded-full transition-all ${
+              activeTab === 'products' 
+                ? 'bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] shadow-sm' 
+                : 'text-[#6F665F] dark:text-[#C5BFB8] hover:text-[#2D241E]'
+            }`}
           >
-            Manage Products ({products.length})
+            Catalog Items ({products.length})
           </button>
           <button
             onClick={() => setActiveTab('repairs')}
-            className={`px-4 py-2 rounded-xl transition-all ${activeTab === 'repairs' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-600 dark:text-slate-400'}`}
+            className={`px-5 py-2 rounded-full transition-all ${
+              activeTab === 'repairs' 
+                ? 'bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] shadow-sm' 
+                : 'text-[#6F665F] dark:text-[#C5BFB8] hover:text-[#2D241E]'
+            }`}
           >
-            Manage Service Jobs
+            Bench Jobs
           </button>
         </div>
       </div>
@@ -113,30 +127,30 @@ export const AdminDashboardPage: React.FC = () => {
       {activeTab === 'analytics' && (
         <div className="space-y-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-sm space-y-2">
-              <span className="text-[10px] font-bold uppercase text-slate-400">Total Monthly Revenue</span>
-              <div className="text-2xl font-black text-slate-900 dark:text-white">{formatCurrency(142850 * 83)}</div>
-              <p className="text-[11px] text-emerald-500 font-bold flex items-center gap-1">
+            <div className="p-6 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl shadow-sm space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8]">Monthly Revenue</span>
+              <div className="text-2xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">{formatCurrency(142850 * 83)}</div>
+              <p className="text-[11px] text-[#5E8C61] dark:text-[#76A46E] font-semibold flex items-center gap-1">
                 <TrendingUp className="w-3.5 h-3.5" /> +18.4% vs last month
               </p>
             </div>
 
-            <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-sm space-y-2">
-              <span className="text-[10px] font-bold uppercase text-slate-400">Total Orders Fulfilled</span>
-              <div className="text-2xl font-black text-slate-900 dark:text-white">1,240</div>
-              <p className="text-[11px] text-emerald-500 font-bold">100% On-Time Delivery</p>
+            <div className="p-6 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl shadow-sm space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8]">Fulfilled Orders</span>
+              <div className="text-2xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">1,240</div>
+              <p className="text-[11px] text-[#5E8C61] dark:text-[#76A46E] font-semibold">100% White-Glove Delivery</p>
             </div>
 
-            <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-sm space-y-2">
-              <span className="text-[10px] font-bold uppercase text-slate-400">Active Repair Lab Tickets</span>
-              <div className="text-2xl font-black text-blue-600 dark:text-cyan-400">{Object.keys(repairOrders).length} Jobs</div>
-              <p className="text-[11px] text-slate-500">Avg Turnaround: 24 Hours</p>
+            <div className="p-6 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl shadow-sm space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8]">Active Repair Bench Tickets</span>
+              <div className="text-2xl font-serif font-bold text-[#3F5B43] dark:text-[#8FAE83]">{Object.keys(repairOrders).length} Jobs</div>
+              <p className="text-[11px] text-[#6F665F] dark:text-[#C5BFB8]">Avg Turnaround: 24 Hours</p>
             </div>
 
-            <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-sm space-y-2">
-              <span className="text-[10px] font-bold uppercase text-slate-400">Store Rating</span>
-              <div className="text-2xl font-black text-amber-500">4.9 / 5.0</div>
-              <p className="text-[11px] text-slate-500">Based on 3,420 reviews</p>
+            <div className="p-6 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl shadow-sm space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8]">Showroom Rating</span>
+              <div className="text-2xl font-serif font-bold text-[#C79A3B] dark:text-[#D4AF5A]">4.9 / 5.0</div>
+              <p className="text-[11px] text-[#6F665F] dark:text-[#C5BFB8]">Based on 3,420 client reviews</p>
             </div>
           </div>
         </div>
@@ -146,12 +160,12 @@ export const AdminDashboardPage: React.FC = () => {
       {activeTab === 'products' && (
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">Store Catalog Items</h2>
+            <h2 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">Catalog Management</h2>
             <button
               onClick={() => setIsAddingProduct(true)}
-              className="px-4 py-2 bg-blue-600 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-md"
+              className="px-5 py-2.5 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold text-xs rounded-full flex items-center gap-1.5 shadow-sm transition-all"
             >
-              <Plus className="w-4 h-4" /> Add New Hardware Item
+              <Plus className="w-4 h-4" /> Add Hardware Item
             </button>
           </div>
 
@@ -166,41 +180,41 @@ export const AdminDashboardPage: React.FC = () => {
       {/* Service Repair Jobs Management */}
       {activeTab === 'repairs' && (
         <div className="space-y-6">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">Active Bench Repair Jobs</h2>
+          <h2 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">Active Technical Bench Jobs</h2>
           <div className="space-y-4">
             {(Object.values(repairOrders) as RepairOrder[]).map(order => (
-              <div key={order.id} className="p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-sm space-y-4 text-xs">
-                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div key={order.id} className="p-6 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl shadow-sm space-y-4 text-xs">
+                <div className="flex items-center justify-between border-b border-[#D8CFC2]/60 dark:border-[#4A433D]/60 pb-3">
                   <div>
-                    <span className="font-black text-blue-600 dark:text-cyan-400">ID: #{order.id}</span>
-                    <span className="text-slate-400 ml-2">• Customer: {order.customerName}</span>
+                    <span className="font-bold text-[#3F5B43] dark:text-[#8FAE83]">Job ID: #{order.id}</span>
+                    <span className="text-[#6F665F] dark:text-[#C5BFB8] ml-3">• Client: {order.customerName}</span>
                   </div>
-                  <span className="font-extrabold text-amber-500">Stage {order.currentStepIndex + 1} of 7</span>
+                  <span className="font-bold text-[#C79A3B] dark:text-[#D4AF5A]">Stage {order.currentStepIndex + 1} of 7</span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="font-bold text-slate-900 dark:text-white">{order.device}</p>
-                    <p className="text-[11px] text-slate-500">{order.issue}</p>
+                    <p className="font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] text-sm">{order.device}</p>
+                    <p className="text-[11px] text-[#6F665F] dark:text-[#C5BFB8]">{order.issue}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-bold text-slate-900 dark:text-white">Tech: {order.assignedTechnician}</p>
-                    <p className="text-blue-600 font-extrabold">${order.estimatedCost}</p>
+                    <p className="font-bold text-[#2D241E] dark:text-[#F5F2ED]">Artisan: {order.assignedTechnician}</p>
+                    <p className="text-[#C56A43] dark:text-[#C97A4D] font-bold text-sm">₹{order.estimatedCost.toLocaleString()}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-end gap-2 pt-2">
+                <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#D8CFC2]/40 dark:border-[#4A433D]/40">
                   <button
                     onClick={() => handleUpdateRepairStep(order.id, -1)}
                     disabled={order.currentStepIndex === 0}
-                    className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold rounded-xl disabled:opacity-50"
+                    className="px-4 py-2 bg-[#EEE6DA] dark:bg-[#2B2520] text-[#2D241E] dark:text-[#F5F2ED] font-semibold rounded-full disabled:opacity-40"
                   >
                     ← Previous Stage
                   </button>
                   <button
                     onClick={() => handleUpdateRepairStep(order.id, 1)}
                     disabled={order.currentStepIndex === 6}
-                    className="px-3 py-1.5 bg-blue-600 text-white font-bold rounded-xl disabled:opacity-50"
+                    className="px-4 py-2 bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] font-semibold rounded-full disabled:opacity-40"
                   >
                     Advance Stage →
                   </button>
@@ -213,33 +227,33 @@ export const AdminDashboardPage: React.FC = () => {
 
       {/* Add Product Modal */}
       {isAddingProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <form onSubmit={handleAddProduct} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 max-w-md w-full space-y-4 shadow-2xl text-xs">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
-              <h3 className="font-bold text-sm text-slate-900 dark:text-white">Add New Product to Store</h3>
-              <button type="button" onClick={() => setIsAddingProduct(false)} className="text-slate-400">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#181512]/75 backdrop-blur-md">
+          <form onSubmit={handleAddProduct} className="bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-3xl p-6 sm:p-8 max-w-md w-full space-y-4 shadow-2xl text-xs">
+            <div className="flex items-center justify-between pb-3 border-b border-[#D8CFC2]/60 dark:border-[#4A433D]/60">
+              <h3 className="font-serif font-bold text-base text-[#2D241E] dark:text-[#F5F2ED]">Add Product to Atelier</h3>
+              <button type="button" onClick={() => setIsAddingProduct(false)} className="p-1 rounded-full text-[#6F665F] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520]">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Product Title</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Product Title</label>
               <input
                 type="text"
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 required
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Brand</label>
+                <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Brand</label>
                 <select
                   value={newBrand}
                   onChange={(e) => setNewBrand(e.target.value)}
-                  className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                  className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
                 >
                   <option value="Dell">Dell</option>
                   <option value="Apple">Apple</option>
@@ -249,11 +263,11 @@ export const AdminDashboardPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Category</label>
+                <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Category</label>
                 <select
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
-                  className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                  className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
                 >
                   <option value="Laptops">Laptops</option>
                   <option value="Desktops">Desktops</option>
@@ -263,19 +277,19 @@ export const AdminDashboardPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Price (₹)</label>
+              <label className="block font-semibold text-[#2D241E] dark:text-[#F5F2ED] mb-1">Price (₹)</label>
               <input
                 type="number"
                 value={newPrice}
                 onChange={(e) => setNewPrice(e.target.value)}
                 required
-                className="w-full p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl"
+                className="w-full p-3 bg-[#EEE6DA]/40 dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-[#2D241E] dark:text-[#F5F2ED]"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl shadow-md"
+              className="w-full py-3 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold rounded-full shadow-sm"
             >
               Publish Item
             </button>
