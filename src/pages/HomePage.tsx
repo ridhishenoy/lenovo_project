@@ -38,15 +38,15 @@ export const HomePage: React.FC = () => {
       discount: 'Curated Heritage Collection • Complimentary White-Glove Setup',
       ctaText: 'Explore Atelier Collection',
       link: '/products?category=Laptops',
-      image: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1000&q=80'
+      image: 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/g-series/g15-5530/media-gallery/gray/notebook-g15-5530-gray-gallery-1.psd?fmt=pjpg&pscan=auto&scl=1&wid=1000'
     },
     {
-      title: 'MacBook Pro & ThinkPad X1 Series',
-      subtitle: 'Seamless glassmorphic design, silent thermal dissipation, and industrial carbon-fiber engineering for discerning professionals.',
+      title: 'Lenovo ThinkCentre & Dell Inspiron Series',
+      subtitle: 'Seamless design, powerful performance, and industrial engineering for discerning professionals.',
       discount: 'Official Onsite Warranty Included',
-      ctaText: 'View Executive Laptops',
+      ctaText: 'View Executive PCs',
       link: '/products?category=Laptops',
-      image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=1000&q=80'
+      image: 'https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MjExOTIzfGltYWdlL3BuZ3xoYzAvaDEzLzEzNDkxODY1MzYwNDE0LnBuZ3xhMjhlNzZkMDQzMjczZGU3MjRmOWRiMjIzNGU4OTNjZDZmOTMyMjc4YjU1YzM2NDQyZjFhNzRmNzIwNjZlMTVm/lenovo-thinkcentre-neo-50t-intel-tower-hero.png'
     },
     // {
     //   title: 'Custom PC Studio & Precision Tuning',
@@ -77,7 +77,7 @@ export const HomePage: React.FC = () => {
       comment: 'Shenoy Computers crafted a custom RTX workstation for my architecture firm. The attention to acoustics and thermal flow feels like a fine piece of Scandinavian furniture.',
       rating: 5,
       verified: true,
-      product: 'Custom Workstation Pro'
+      product: 'Lenovo ThinkCentre Neo50T'
     },
     {
       id: 'rev-2',
@@ -92,10 +92,10 @@ export const HomePage: React.FC = () => {
       id: 'rev-3',
       name: 'Sophia Thorne',
       role: 'Creative Director',
-      comment: 'Purchasing my MacBook Pro felt like visiting a luxury design showroom. Transparent pricing, expert guidance, and serene store environment.',
+      comment: 'Purchasing my Dell laptop felt like visiting a luxury design showroom. Transparent pricing, expert guidance, and serene store environment.',
       rating: 5,
       verified: true,
-      product: 'Apple MacBook Pro 16"'
+      product: 'Dell Inspiron 15 DC 15260'
     }
   ];
 

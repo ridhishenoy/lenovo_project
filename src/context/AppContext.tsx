@@ -129,10 +129,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isAdminMode, setIsAdminMode] = useState<boolean>(false);
 
   // Products & Filter
-  const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('nexustech_products_inr');
-    return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
-  });
+  const [products, setProducts] = useState<Product[]>(INITIAL_PRODUCTS);
 
   const [filter, setFilter] = useState<ProductFilter>(DEFAULT_FILTER);
 
