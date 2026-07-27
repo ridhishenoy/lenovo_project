@@ -19,8 +19,7 @@ import {
   ShieldCheck, 
   Sparkles, 
   ChevronDown,
-  User,
-  LayoutDashboard
+  User
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -119,17 +118,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenVoiceSearch, onOpenImageSe
             className="flex items-center gap-1 px-3 py-1 text-[11px] font-bold rounded bg-lenovo-red text-white hover:bg-lenovo-red-hover transition-colors shadow-sm"
           >
             <Sparkles className="w-3 h-3 text-amber-300" /> AI Hardware Advisor
-          </button>
-
-          <button
-            onClick={toggleAdminMode}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-semibold transition-colors ${
-              isAdminMode 
-                ? 'bg-amber-500 text-slate-950' 
-                : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
-            }`}
-          >
-            <LayoutDashboard className="w-3 h-3" /> {isAdminMode ? 'Admin Portal' : 'Switch to Admin'}
           </button>
         </div>
       </div>
@@ -306,13 +294,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenVoiceSearch, onOpenImageSe
                   >
                     User Dashboard
                   </Link>
-                  <Link
-                    to="/admin"
-                    onClick={() => setUserDropdownOpen(false)}
-                    className="block px-4 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
-                  >
-                    Admin Portal
-                  </Link>
+                  {user.role === 'admin' && (
+                    <Link
+                      to="/admin"
+                      onClick={() => setUserDropdownOpen(false)}
+                      className="block px-4 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
+                    >
+                      Admin Portal
+                    </Link>
+                  )}
                   <Link
                     to="/track"
                     onClick={() => setUserDropdownOpen(false)}
