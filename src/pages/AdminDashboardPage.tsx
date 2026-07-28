@@ -22,13 +22,17 @@ import {
 import { ProductFormModal } from '../components/admin/ProductFormModal';
 
 export const AdminDashboardPage: React.FC = () => {
-  const { products, addProduct, updateProduct, deleteProduct, repairOrders, setRepairOrders, showToast } = useApp();
+  const { products, addProduct, updateProduct, deleteProduct, repairOrders, setRepairOrders, showToast, partners, addPartner, removePartner } = useApp();
 
-  const [activeTab, setActiveTab] = useState<'analytics' | 'products' | 'repairs'>('analytics');
+  const [activeTab, setActiveTab] = useState<'analytics' | 'products' | 'repairs' | 'partners'>('analytics');
 
   // Product Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+
+  // Partner Modal State
+  const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
+  const [newPartner, setNewPartner] = useState({ name: '', logo: '', imageUrl: '' });
 
   const handleOpenAddModal = () => {
     setEditingProduct(null);
@@ -110,6 +114,16 @@ export const AdminDashboardPage: React.FC = () => {
             }`}
           >
             Bench Jobs
+          </button>
+          <button
+            onClick={() => setActiveTab('partners')}
+            className={`px-5 py-2 rounded-full transition-all ${
+              activeTab === 'partners' 
+                ? 'bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] shadow-sm' 
+                : 'text-[#6F665F] dark:text-[#C5BFB8] hover:text-[#2D241E]'
+            }`}
+          >
+            Partners
           </button>
         </div>
       </div>
@@ -253,6 +267,104 @@ export const AdminDashboardPage: React.FC = () => {
         </div>
       )}
 
+      {/* Partners Management */}
+      {activeTab === 'partners' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">Showroom Partners</h2>
+            <button
+              onClick={() => setIsPartnerModalOpen(true)}
+              className="px-5 py-2.5 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold text-xs rounded-full flex items-center gap-1.5 shadow-sm transition-all"
+            >
+              <Plus className="w-4 h-4" /> Add Partner
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {partners.map(p => (
+              <div key={p.name} className="bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm relative group">
+                {p.imageUrl ? (
+                  <img src={p.imageUrl} alt={p.name} className="h-10 object-contain mb-2" />
+                ) : (
+                  <span className="text-xl sm:text-2xl font-serif font-bold tracking-widest text-[#2D241E] dark:text-[#F5F2ED] mb-2">{p.logo}</span>
+                )}
+                <span className="text-[10px] sm:text-xs text-[#6F665F] dark:text-[#C5BFB8] text-center">{p.name}</span>
+                
+                <button
+                  onClick={() => { if(confirm(`Remove partner ${p.name}?`)) removePartner(p.name); }}
+                  className="absolute top-2 right-2 p-1.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                  title="Remove Partner"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Add Partner Modal */}
+      {isPartnerModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-[#FFFDF8] dark:bg-[#221D19] rounded-3xl w-full max-w-md p-6 shadow-xl border border-[#D8CFC2] dark:border-[#4A433D]">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">Add New Partner</h3>
+              <button onClick={() => setIsPartnerModalOpen(false)} className="text-[#6F665F] hover:text-[#2D241E] dark:text-[#C5BFB8] dark:hover:text-[#F5F2ED]">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Partner Name</label>
+                <input
+                  type="text"
+                  value={newPartner.name}
+                  onChange={e => setNewPartner({...newPartner, name: e.target.value})}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]"
+                  placeholder="e.g. Dell"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Logo Text</label>
+                <input
+                  type="text"
+                  value={newPartner.logo}
+                  onChange={e => setNewPartner({...newPartner, logo: e.target.value})}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]"
+                  placeholder="e.g. DELL"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Image URL (Optional)</label>
+                <input
+                  type="text"
+                  value={newPartner.imageUrl}
+                  onChange={e => setNewPartner({...newPartner, imageUrl: e.target.value})}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]"
+                  placeholder="https://example.com/logo.png"
+                />
+              </div>
+              
+              <button
+                onClick={() => {
+                  if (newPartner.name && (newPartner.logo || newPartner.imageUrl)) {
+                    addPartner(newPartner);
+                    setIsPartnerModalOpen(false);
+                    setNewPartner({ name: '', logo: '', imageUrl: '' });
+                  } else {
+                    showToast('Please provide a name and either logo text or an image URL', 'error');
+                  }
+                }}
+                className="w-full py-3 mt-2 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold rounded-xl transition-colors"
+              >
+                Save Partner
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

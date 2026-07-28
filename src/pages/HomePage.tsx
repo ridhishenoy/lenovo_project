@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { ProductCard } from '../components/common/ProductCard';
 import { formatCurrency } from '../lib/utils';
-import { SERVICES_LIST, BRAND_LOGOS } from '../data/mockData';
+import { SERVICES_LIST } from '../data/mockData';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   Cpu, 
@@ -29,7 +29,7 @@ import { motion } from 'motion/react';
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const { products, setFilter, setIsAiAdvisorOpen } = useApp();
+  const { products, setFilter, setIsAiAdvisorOpen, partners } = useApp();
 
   const heroSlides = [
     {
@@ -196,7 +196,7 @@ export const HomePage: React.FC = () => {
             Authorized Showroom Partner & Certified Atelier
           </div>
           <div className="flex flex-wrap items-center justify-center gap-10 opacity-80">
-            {BRAND_LOGOS.map((b) => (
+            {partners.map((b) => (
               <span key={b.name} className="text-xl font-serif font-bold tracking-widest text-[#2D241E] dark:text-[#F5F2ED] hover:text-[#3F5B43] dark:hover:text-[#8FAE83] transition-colors cursor-pointer">
                 {b.logo}
               </span>

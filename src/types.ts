@@ -239,3 +239,9 @@ export interface Order {
   shippingAddress: string;
   trackingNumber: string;
 }
+
+export interface Partner {
+  name: string;
+  logo: string;
+  imageUrl?: string;
+}

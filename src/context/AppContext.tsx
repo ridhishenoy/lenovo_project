@@ -10,7 +10,8 @@ import {
   UserProfile, 
   Order, 
   Review,
-  Coupon
+  Coupon,
+  Partner
 } from '../types';
 import { 
   INITIAL_PRODUCTS, 
@@ -19,7 +20,8 @@ import {
   PC_BUILDER_COMPONENTS, 
   VALID_COUPONS, 
   SAMPLE_ORDERS, 
-  SAMPLE_REVIEWS 
+  SAMPLE_REVIEWS,
+  BRAND_LOGOS
 } from '../data/mockData';
 import { AuthService, ProductService } from '../services/api';
 
@@ -102,6 +104,11 @@ interface AppContextType {
   setIsCartDrawerOpen: (open: boolean) => void;
   isCompareModalOpen: boolean;
   setIsCompareModalOpen: (open: boolean) => void;
+  
+  // Partners
+  partners: Partner[];
+  addPartner: (partner: Partner) => void;
+  removePartner: (name: string) => void;
 }
 
 const DEFAULT_FILTER: ProductFilter = {
@@ -186,6 +193,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Trade-In Quotes
   const [tradeInQuotes, setTradeInQuotes] = useState<TradeInQuote[]>([]);
+
+  // Partners
+  const [partners, setPartners] = useState<Partner[]>(() => {
+    const saved = localStorage.getItem('nexustech_partners');
+    return saved ? JSON.parse(saved) : BRAND_LOGOS;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('nexustech_partners', JSON.stringify(partners));
+  }, [partners]);
 
   // User & Orders
   const [user, setUser] = useState<UserProfile | null>(() => {
@@ -497,6 +514,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     showToast(`Order #${newOrder.id} placed successfully!`, 'success');
   };
 
+  const addPartner = (partner: Partner) => {
+    setPartners(prev => [...prev, partner]);
+    showToast(`Partner added successfully`, 'success');
+  };
+
+  const removePartner = (name: string) => {
+    setPartners(prev => prev.filter(p => p.name !== name));
+    showToast(`Partner removed successfully`, 'info');
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -551,7 +578,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         isCartDrawerOpen,
         setIsCartDrawerOpen,
         isCompareModalOpen,
-        setIsCompareModalOpen
+        setIsCompareModalOpen,
+        partners,
+        addPartner,
+        removePartner
       }}
     >
       {children}
