@@ -33,6 +33,7 @@ export const AdminDashboardPage: React.FC = () => {
   // Partner Modal State
   const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
   const [newPartner, setNewPartner] = useState({ name: '', logo: '', imageUrl: '' });
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleOpenAddModal = () => {
     setEditingProduct(null);
@@ -288,7 +289,9 @@ export const AdminDashboardPage: React.FC = () => {
                 ) : (
                   <span className="text-xl sm:text-2xl font-serif font-bold tracking-widest text-[#2D241E] dark:text-[#F5F2ED] mb-2">{p.logo}</span>
                 )}
-                <span className="text-[10px] sm:text-xs text-[#6F665F] dark:text-[#C5BFB8] text-center">{p.name}</span>
+                {p.name && !p.name.startsWith('Partner-') && (
+                  <span className="text-[10px] sm:text-xs text-[#6F665F] dark:text-[#C5BFB8] text-center">{p.name}</span>
+                )}
                 
                 <button
                   onClick={() => { if(confirm(`Remove partner ${p.name}?`)) removePartner(p.name); }}
@@ -316,7 +319,7 @@ export const AdminDashboardPage: React.FC = () => {
             
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Partner Name</label>
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Partner Name (Optional)</label>
                 <input
                   type="text"
                   value={newPartner.name}
@@ -326,7 +329,7 @@ export const AdminDashboardPage: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Logo Text</label>
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Logo Text (Optional)</label>
                 <input
                   type="text"
                   value={newPartner.logo}
@@ -337,24 +340,67 @@ export const AdminDashboardPage: React.FC = () => {
               </div>
               
               <div>
-                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Image URL (Optional)</label>
-                <input
-                  type="text"
-                  value={newPartner.imageUrl}
-                  onChange={e => setNewPartner({...newPartner, imageUrl: e.target.value})}
-                  className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]"
-                  placeholder="https://example.com/logo.png"
-                />
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Partner Logo Image</label>
+                <div
+                  onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                  onDragLeave={() => setIsDragging(false)}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setIsDragging(false);
+                    const file = e.dataTransfer.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setNewPartner(prev => ({ ...prev, imageUrl: reader.result as string }));
+                      };
+                      reader.readAsDataURL(file);
+                    } else {
+                      showToast('Please drop a valid image file', 'error');
+                    }
+                  }}
+                  className={`border-2 border-dashed rounded-xl p-4 text-center transition-colors ${isDragging ? 'border-[#3F5B43] bg-[#3F5B43]/10 dark:border-[#8FAE83] dark:bg-[#8FAE83]/10' : 'border-[#D8CFC2] dark:border-[#4A433D] hover:border-[#3F5B43] dark:hover:border-[#8FAE83]'}`}
+                >
+                  {newPartner.imageUrl && newPartner.imageUrl.startsWith('data:image') ? (
+                    <div className="flex flex-col items-center">
+                      <img src={newPartner.imageUrl} alt="Preview" className="h-16 object-contain mb-2" />
+                      <button 
+                        onClick={() => setNewPartner(prev => ({ ...prev, imageUrl: '' }))}
+                        className="text-xs text-red-500 hover:underline"
+                      >
+                        Remove Image
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="py-2">
+                      <p className="text-sm text-[#6F665F] dark:text-[#C5BFB8]">Drag & drop an image here</p>
+                      <p className="text-xs text-[#6F665F]/70 dark:text-[#C5BFB8]/70 mt-1">or paste an image URL below</p>
+                    </div>
+                  )}
+                </div>
+                {(!newPartner.imageUrl || !newPartner.imageUrl.startsWith('data:image')) && (
+                  <input
+                    type="text"
+                    value={newPartner.imageUrl}
+                    onChange={e => setNewPartner({...newPartner, imageUrl: e.target.value})}
+                    className="w-full mt-3 px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]"
+                    placeholder="https://example.com/logo.png"
+                  />
+                )}
               </div>
               
               <button
                 onClick={() => {
-                  if (newPartner.name && (newPartner.logo || newPartner.imageUrl)) {
-                    addPartner(newPartner);
+                  if (newPartner.imageUrl) {
+                    const partnerToSave = {
+                      ...newPartner,
+                      name: newPartner.name || `Partner-${Math.floor(Math.random() * 100000)}`,
+                      logo: newPartner.logo || ''
+                    };
+                    addPartner(partnerToSave);
                     setIsPartnerModalOpen(false);
                     setNewPartner({ name: '', logo: '', imageUrl: '' });
                   } else {
-                    showToast('Please provide a name and either logo text or an image URL', 'error');
+                    showToast('Please provide a Partner Logo Image', 'error');
                   }
                 }}
                 className="w-full py-3 mt-2 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold rounded-xl transition-colors"

@@ -197,8 +197,12 @@ export const HomePage: React.FC = () => {
           </div>
           <div className="flex flex-wrap items-center justify-center gap-10 opacity-80">
             {partners.map((b) => (
-              <span key={b.name} className="text-xl font-serif font-bold tracking-widest text-[#2D241E] dark:text-[#F5F2ED] hover:text-[#3F5B43] dark:hover:text-[#8FAE83] transition-colors cursor-pointer">
-                {b.logo}
+              <span key={b.name} className="text-xl font-serif font-bold tracking-widest text-[#2D241E] dark:text-[#F5F2ED] hover:text-[#3F5B43] dark:hover:text-[#8FAE83] transition-colors cursor-pointer flex items-center justify-center">
+                {b.imageUrl ? (
+                  <img src={b.imageUrl} alt={b.name} className="h-8 object-contain filter dark:invert opacity-80 hover:opacity-100 transition-opacity" />
+                ) : (
+                  b.logo
+                )}
               </span>
             ))}
           </div>
