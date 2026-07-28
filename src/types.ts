@@ -8,22 +8,7 @@ export type ProductCategory =
   | 'Storage' 
   | 'Networking';
 
-export type ProductBrand = 
-  | 'Dell' 
-  | 'Lenovo' 
-  | 'Apple' 
-  | 'ASUS' 
-  | 'HP' 
-  | 'MSI' 
-  | 'Acer' 
-  | 'Epson' 
-  | 'Corsair' 
-  | 'NVIDIA' 
-  | 'AMD' 
-  | 'Intel' 
-  | 'Logitech'
-  | 'Samsung'
-  | 'Razer';
+export type ProductBrand = string;
 
 export interface ProductSpecs {
   processor?: string;

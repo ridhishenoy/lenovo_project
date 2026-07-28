@@ -115,6 +115,11 @@ interface AppContextType {
   addHeroSlide: (slide: HeroSlide) => void;
   removeHeroSlide: (id: string) => void;
   updateHeroSlide: (id: string, updatedSlide: HeroSlide) => void;
+
+  // Available Brands (Manufacturers)
+  availableBrands: string[];
+  addBrand: (brand: string) => void;
+  removeBrand: (brand: string) => void;
 }
 
 const DEFAULT_FILTER: ProductFilter = {
@@ -219,6 +224,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     localStorage.setItem('nexustech_heroslides', JSON.stringify(heroSlides));
   }, [heroSlides]);
+
+  // Brands
+  const [availableBrands, setAvailableBrands] = useState<string[]>(() => {
+    const saved = localStorage.getItem('nexustech_brands');
+    return saved ? JSON.parse(saved) : ['Dell', 'Apple', 'ASUS', 'Lenovo', 'HP', 'NVIDIA', 'Epson', 'Corsair', 'Logitech', 'Samsung'];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('nexustech_brands', JSON.stringify(availableBrands));
+  }, [availableBrands]);
 
   // User & Orders
   const [user, setUser] = useState<UserProfile | null>(() => {
@@ -555,6 +570,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     showToast(`Slide updated successfully`, 'success');
   };
 
+  const addBrand = (brand: string) => {
+    if (!availableBrands.includes(brand)) {
+      setAvailableBrands(prev => [...prev, brand]);
+      showToast(`Brand added successfully`, 'success');
+    }
+  };
+
+  const removeBrand = (brand: string) => {
+    setAvailableBrands(prev => prev.filter(b => b !== brand));
+    // Also remove from filter if it's currently selected
+    setFilter(prev => ({
+      ...prev,
+      brands: prev.brands.filter(b => b !== brand)
+    }));
+    showToast(`Brand removed successfully`, 'info');
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -616,7 +648,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         heroSlides,
         addHeroSlide,
         removeHeroSlide,
-        updateHeroSlide
+        updateHeroSlide,
+        availableBrands,
+        addBrand,
+        removeBrand
       }}
     >
       {children}

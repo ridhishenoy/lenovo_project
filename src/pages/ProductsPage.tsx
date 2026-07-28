@@ -15,11 +15,11 @@ import {
 } from 'lucide-react';
 
 export const ProductsPage: React.FC = () => {
-  const { products, filter, setFilter, resetFilters } = useApp();
+  const { products, filter, setFilter, resetFilters, availableBrands } = useApp();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
-  const brandsList: ProductBrand[] = ['Dell', 'Apple', 'ASUS', 'Lenovo', 'HP', 'NVIDIA', 'Epson', 'Corsair', 'Logitech', 'Samsung'];
+  const brandsList: string[] = availableBrands;
   const categoriesList: ProductCategory[] = ['Laptops', 'Desktops', 'Printers', 'Components', 'Accessories', 'Monitors', 'Storage'];
 
   // Filtered products calculation

@@ -22,9 +22,9 @@ import {
 import { ProductFormModal } from '../components/admin/ProductFormModal';
 
 export const AdminDashboardPage: React.FC = () => {
-  const { products, addProduct, updateProduct, deleteProduct, repairOrders, setRepairOrders, showToast, partners, addPartner, removePartner, heroSlides, addHeroSlide, removeHeroSlide, updateHeroSlide } = useApp();
+  const { products, addProduct, updateProduct, deleteProduct, repairOrders, setRepairOrders, showToast, partners, addPartner, removePartner, heroSlides, addHeroSlide, removeHeroSlide, updateHeroSlide, availableBrands, addBrand, removeBrand } = useApp();
 
-  const [activeTab, setActiveTab] = useState<'analytics' | 'products' | 'repairs' | 'partners' | 'slides'>('analytics');
+  const [activeTab, setActiveTab] = useState<'analytics' | 'products' | 'repairs' | 'partners' | 'slides' | 'brands'>('analytics');
 
   // Product Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,10 +35,12 @@ export const AdminDashboardPage: React.FC = () => {
   const [newPartner, setNewPartner] = useState({ name: '', logo: '', imageUrl: '' });
   const [isDragging, setIsDragging] = useState(false);
 
-  // Slide Modal State
   const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
   const [editingSlide, setEditingSlide] = useState<any>(null);
   const [newSlide, setNewSlide] = useState({ id: '', title: '', subtitle: '', discount: '', ctaText: '', link: '', image: '' });
+
+  // Brand Management State
+  const [newBrandName, setNewBrandName] = useState('');
 
   const handleOpenAddModal = () => {
     setEditingProduct(null);
@@ -140,6 +142,16 @@ export const AdminDashboardPage: React.FC = () => {
             }`}
           >
             Slides
+          </button>
+          <button
+            onClick={() => setActiveTab('brands')}
+            className={`px-5 py-2 rounded-full transition-all ${
+              activeTab === 'brands' 
+                ? 'bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] shadow-sm' 
+                : 'text-[#6F665F] dark:text-[#C5BFB8] hover:text-[#2D241E]'
+            }`}
+          >
+            Brands Filter
           </button>
         </div>
       </div>
@@ -530,6 +542,64 @@ export const AdminDashboardPage: React.FC = () => {
             >
               {editingSlide ? 'Update Slide' : 'Save Slide'}
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Brands Filter Management */}
+      {activeTab === 'brands' && (
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">Manage Brands Filter</h2>
+              <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8] mt-1">These brands appear in the shop sidebar filter.</p>
+            </div>
+            
+            <div className="flex gap-2 w-full sm:w-auto">
+              <input 
+                type="text" 
+                value={newBrandName} 
+                onChange={(e) => setNewBrandName(e.target.value)} 
+                placeholder="e.g. Sony" 
+                className="flex-1 sm:w-64 px-4 py-2 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] rounded-full focus:outline-none focus:border-[#3F5B43] dark:focus:border-[#8FAE83]"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && newBrandName.trim()) {
+                    addBrand(newBrandName.trim());
+                    setNewBrandName('');
+                  }
+                }}
+              />
+              <button
+                onClick={() => {
+                  if (newBrandName.trim()) {
+                    addBrand(newBrandName.trim());
+                    setNewBrandName('');
+                  }
+                }}
+                className="px-5 py-2 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold text-xs rounded-full flex items-center justify-center gap-1.5 shadow-sm transition-all whitespace-nowrap"
+              >
+                <Plus className="w-4 h-4" /> Add
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {availableBrands.map(brand => (
+              <div key={brand} className="flex items-center justify-between p-4 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-2xl shadow-sm">
+                <span className="font-semibold text-sm text-[#2D241E] dark:text-[#F5F2ED]">{brand}</span>
+                <button 
+                  onClick={() => { if(confirm(`Remove ${brand} from filter list?`)) removeBrand(brand); }}
+                  className="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors p-1"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+            {availableBrands.length === 0 && (
+              <div className="col-span-full py-12 text-center text-[#6F665F] dark:text-[#C5BFB8]">
+                No brands currently available. Add one above.
+              </div>
+            )}
           </div>
         </div>
       )}
