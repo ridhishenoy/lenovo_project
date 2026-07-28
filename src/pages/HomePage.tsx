@@ -195,11 +195,11 @@ export const HomePage: React.FC = () => {
           <div className="text-center text-xs font-serif font-bold uppercase tracking-widest text-[#6F665F] dark:text-[#C5BFB8] mb-6">
             Authorized Showroom Partner & Certified Atelier
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-10 opacity-80">
+          <div className="flex flex-wrap items-center justify-center gap-10">
             {partners.map((b) => (
               <span key={b.name} className="text-xl font-serif font-bold tracking-widest text-[#2D241E] dark:text-[#F5F2ED] hover:text-[#3F5B43] dark:hover:text-[#8FAE83] transition-colors cursor-pointer flex items-center justify-center">
                 {b.imageUrl ? (
-                  <img src={b.imageUrl} alt={b.name} className="h-8 object-contain filter dark:invert opacity-80 hover:opacity-100 transition-opacity" />
+                  <img src={b.imageUrl} alt={b.name} className="h-10 sm:h-12 object-contain" />
                 ) : (
                   b.logo
                 )}
