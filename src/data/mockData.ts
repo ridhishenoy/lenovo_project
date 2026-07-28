@@ -5,8 +5,30 @@ import {
   PCComponent, 
   Coupon, 
   Review,
-  Order
+  Order,
+  HeroSlide
 } from '../types';
+
+export const INITIAL_HERO_SLIDES: HeroSlide[] = [
+  {
+    id: 'hs-1',
+    title: 'Crafted Workstations & Artisan Laptops',
+    subtitle: 'Experience extraordinary computing power housed in natural precision engineering. Certified Dell, Apple, Lenovo, and custom rigs.',
+    discount: 'Curated Heritage Collection • Complimentary White-Glove Setup',
+    ctaText: 'Explore Atelier Collection',
+    link: '/products?category=Laptops',
+    image: '/images/products/gaming-g15.png'
+  },
+  {
+    id: 'hs-2',
+    title: 'Lenovo ThinkCentre & Dell Inspiron Series',
+    subtitle: 'Seamless design, powerful performance, and industrial engineering for discerning professionals.',
+    discount: 'Official Onsite Warranty Included',
+    ctaText: 'View Executive PCs',
+    link: '/products?category=Laptops',
+    image: '/images/products/thinkcentre-neo.png'
+  }
+];
 
 export const INITIAL_PRODUCTS: Product[] = [
   {

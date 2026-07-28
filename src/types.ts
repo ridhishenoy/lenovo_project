@@ -245,3 +245,13 @@ export interface Partner {
   logo: string;
   imageUrl?: string;
 }
+
+export interface HeroSlide {
+  id: string;
+  title: string;
+  subtitle: string;
+  discount: string;
+  ctaText: string;
+  link: string;
+  image: string;
+}

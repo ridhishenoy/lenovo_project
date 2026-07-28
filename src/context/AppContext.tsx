@@ -9,9 +9,9 @@ import {
   TradeInQuote, 
   UserProfile, 
   Order, 
-  Review,
   Coupon,
-  Partner
+  Partner,
+  HeroSlide
 } from '../types';
 import { 
   INITIAL_PRODUCTS, 
@@ -21,7 +21,8 @@ import {
   VALID_COUPONS, 
   SAMPLE_ORDERS, 
   SAMPLE_REVIEWS,
-  BRAND_LOGOS
+  BRAND_LOGOS,
+  INITIAL_HERO_SLIDES
 } from '../data/mockData';
 import { AuthService, ProductService } from '../services/api';
 
@@ -105,10 +106,15 @@ interface AppContextType {
   isCompareModalOpen: boolean;
   setIsCompareModalOpen: (open: boolean) => void;
   
-  // Partners
   partners: Partner[];
   addPartner: (partner: Partner) => void;
   removePartner: (name: string) => void;
+
+  // Hero Slides (New Arrivals)
+  heroSlides: HeroSlide[];
+  addHeroSlide: (slide: HeroSlide) => void;
+  removeHeroSlide: (id: string) => void;
+  updateHeroSlide: (id: string, updatedSlide: HeroSlide) => void;
 }
 
 const DEFAULT_FILTER: ProductFilter = {
@@ -203,6 +209,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     localStorage.setItem('nexustech_partners', JSON.stringify(partners));
   }, [partners]);
+
+  // Hero Slides
+  const [heroSlides, setHeroSlides] = useState<HeroSlide[]>(() => {
+    const saved = localStorage.getItem('nexustech_heroslides');
+    return saved ? JSON.parse(saved) : INITIAL_HERO_SLIDES;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('nexustech_heroslides', JSON.stringify(heroSlides));
+  }, [heroSlides]);
 
   // User & Orders
   const [user, setUser] = useState<UserProfile | null>(() => {
@@ -524,6 +540,21 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     showToast(`Partner removed successfully`, 'info');
   };
 
+  const addHeroSlide = (slide: HeroSlide) => {
+    setHeroSlides(prev => [...prev, slide]);
+    showToast(`Slide added successfully`, 'success');
+  };
+
+  const removeHeroSlide = (id: string) => {
+    setHeroSlides(prev => prev.filter(s => s.id !== id));
+    showToast(`Slide removed successfully`, 'info');
+  };
+
+  const updateHeroSlide = (id: string, updatedSlide: HeroSlide) => {
+    setHeroSlides(prev => prev.map(s => s.id === id ? updatedSlide : s));
+    showToast(`Slide updated successfully`, 'success');
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -581,7 +612,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setIsCompareModalOpen,
         partners,
         addPartner,
-        removePartner
+        removePartner,
+        heroSlides,
+        addHeroSlide,
+        removeHeroSlide,
+        updateHeroSlide
       }}
     >
       {children}

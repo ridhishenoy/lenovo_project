@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { ProductCard } from '../components/common/ProductCard';
 import { formatCurrency } from '../lib/utils';
@@ -25,40 +25,22 @@ import {
   Clock,
   Quote
 } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const { products, setFilter, setIsAiAdvisorOpen, partners } = useApp();
-
-  const heroSlides = [
-    {
-      title: 'Crafted Workstations & Artisan Laptops',
-      subtitle: 'Experience extraordinary computing power housed in natural precision engineering. Certified Dell, Apple, Lenovo, and custom rigs.',
-      discount: 'Curated Heritage Collection • Complimentary White-Glove Setup',
-      ctaText: 'Explore Atelier Collection',
-      link: '/products?category=Laptops',
-      image: '/images/products/gaming-g15.png'
-    },
-    {
-      title: 'Lenovo ThinkCentre & Dell Inspiron Series',
-      subtitle: 'Seamless design, powerful performance, and industrial engineering for discerning professionals.',
-      discount: 'Official Onsite Warranty Included',
-      ctaText: 'View Executive PCs',
-      link: '/products?category=Laptops',
-      image: '/images/products/thinkcentre-neo.png'
-    },
-    // {
-    //   title: 'Custom PC Studio & Precision Tuning',
-    //   subtitle: 'Hand-assembled custom liquid-cooled workstations with real-time socket & TDP thermal load validation.',
-    //   discount: 'Free Liquid Thermal Compound Upgrade',
-    //   ctaText: 'Enter PC Studio',
-    //   link: '/pc-builder',
-    //   image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1000&q=80'
-    // }
-  ];
+  const { products, setFilter, setIsAiAdvisorOpen, partners, heroSlides } = useApp();
 
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    if (heroSlides.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
+
 
   const categoriesList = [
     { name: 'Laptops', icon: Laptop, count: '120+ Models' },
@@ -110,83 +92,105 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-20 pb-20">
       
-      {/* Hero Banner Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#F7F3ED] to-[#E7DDCF] dark:from-[#181512] dark:to-[#2B2520] min-h-[560px] flex items-center border-b border-[#D8CFC2] dark:border-[#4A433D]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
           
-          {/* Hero Left Content */}
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FFFDF8]/80 dark:bg-[#221D19]/80 border border-[#D8CFC2] dark:border-[#4A433D] rounded-full text-xs font-semibold text-[#3F5B43] dark:text-[#8FAE83] shadow-sm backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#C56A43] dark:bg-[#C97A4D]"></span>
-              <span>{heroSlides[currentSlide].discount}</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-6xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] leading-[1.15] tracking-tight">
-              {heroSlides[currentSlide].title}
-            </h1>
-
-            <p className="text-sm sm:text-base text-[#6F665F] dark:text-[#C5BFB8] max-w-xl leading-relaxed">
-              {heroSlides[currentSlide].subtitle}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Link
-                to={heroSlides[currentSlide].link}
-                className="px-7 py-3.5 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold text-xs sm:text-sm rounded-full shadow-md hover:scale-105 transition-all flex items-center gap-2"
+      <section className="pt-24 pb-12 sm:pt-32 sm:pb-20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[#E8E1D5]/30 dark:bg-[#221D19]/50 rounded-l-[100px] -z-10"></div>
+        
+        {heroSlides.length > 0 && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={currentSlide}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center"
               >
-                <span>{heroSlides[currentSlide].ctaText}</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                
+                {/* Text Content */}
+                <div className="max-w-2xl">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#D8CFC2] dark:border-[#4A433D] bg-white/50 dark:bg-[#181512]/50 backdrop-blur-md mb-6">
+                    <span className="w-2 h-2 rounded-full bg-[#A44240] dark:bg-[#C96462] animate-pulse"></span>
+                    <span className="text-[10px] font-semibold tracking-wider uppercase text-[#2D241E] dark:text-[#F5F2ED]">{heroSlides[currentSlide].discount}</span>
+                  </div>
+                  
+                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] leading-[1.1] mb-6 tracking-tight">
+                    {heroSlides[currentSlide].title.split('&').map((part, i, arr) => (
+                      <React.Fragment key={i}>
+                        {part}
+                        {i < arr.length - 1 && <span className="text-[#3F5B43] dark:text-[#8FAE83]">&</span>}
+                      </React.Fragment>
+                    ))}
+                  </h1>
+                  
+                  <p className="text-lg sm:text-xl text-[#6F665F] dark:text-[#C5BFB8] mb-8 leading-relaxed font-light max-w-xl">
+                    {heroSlides[currentSlide].subtitle}
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
+                    <Link
+                      to={heroSlides[currentSlide].link}
+                      className="w-full sm:w-auto px-8 py-4 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold rounded-full transition-all flex items-center justify-center gap-2 group shadow-sm hover:shadow-md"
+                    >
+                      {heroSlides[currentSlide].ctaText}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <button 
+                      onClick={() => setIsAiAdvisorOpen(true)}
+                      className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] font-semibold rounded-full hover:border-[#3F5B43] dark:hover:border-[#8FAE83] hover:text-[#3F5B43] dark:hover:text-[#8FAE83] transition-colors flex items-center justify-center gap-2"
+                    >
+                      <Bot className="w-4 h-4" /> AI Hardware Advisor
+                    </button>
+                  </div>
+                </div>
 
-              <button
-                onClick={() => setIsAiAdvisorOpen(true)}
-                className="px-7 py-3.5 bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] hover:bg-[#EEE6DA] dark:hover:bg-[#2B2520] text-[#2D241E] dark:text-[#F5F2ED] font-semibold text-xs sm:text-sm rounded-full transition-all flex items-center gap-2"
-              >
-                <Bot className="w-4 h-4 text-[#C56A43] dark:text-[#C97A4D]" />
-                <span>AI Hardware Advisor</span>
-              </button>
-            </div>
-          </motion.div>
+                {/* Product Image Showcase */}
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#3F5B43]/5 to-transparent dark:from-[#8FAE83]/5 rounded-[40px] transform rotate-3"></div>
+                  <div className="bg-white dark:bg-[#221D19] rounded-[40px] p-8 sm:p-12 shadow-xl border border-[#D8CFC2]/50 dark:border-[#4A433D]/50 relative z-10 overflow-hidden group">
+                    <div className="absolute inset-0 bg-[#3F5B43]/5 dark:bg-[#8FAE83]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <img 
+                      src={heroSlides[currentSlide].image} 
+                      alt={heroSlides[currentSlide].title}
+                      className="w-full h-auto object-contain drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    
+                    {/* Floating Specs Card */}
+                    <div className="absolute bottom-6 right-6 bg-white/90 dark:bg-[#181512]/90 backdrop-blur-md p-4 rounded-2xl border border-[#D8CFC2] dark:border-[#4A433D] shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+                      <div className="flex items-center gap-3">
+                        <Cpu className="w-8 h-8 text-[#3F5B43] dark:text-[#8FAE83]" />
+                        <div>
+                          <div className="text-[10px] font-bold uppercase tracking-wider text-[#6F665F] dark:text-[#C5BFB8]">Performance</div>
+                          <div className="text-sm font-bold text-[#2D241E] dark:text-[#F5F2ED]">Enterprise Grade</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </motion.div>
+            </AnimatePresence>
 
-          {/* Hero Right Image Frame */}
-          <motion.div
-            key={`img-${currentSlide}`}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="relative flex items-center justify-center"
-          >
-            <div className="w-full max-w-lg h-80 sm:h-96 rounded-3xl overflow-hidden border border-[#D8CFC2] dark:border-[#4A433D] shadow-2xl p-3 bg-[#FFFDF8]/70 dark:bg-[#221D19]/70 backdrop-blur-md">
-              <img
-                src={heroSlides[currentSlide].image}
-                alt="Banner Hero"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover rounded-2xl"
-              />
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Carousel Indicators */}
-        <div className="absolute bottom-6 inset-x-0 flex justify-center gap-2">
-          {heroSlides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                currentSlide === idx 
-                  ? 'w-8 bg-[#3F5B43] dark:bg-[#8FAE83]' 
-                  : 'w-2 bg-[#D8CFC2] dark:bg-[#4A433D]'
-              }`}
-            />
-          ))}
-        </div>
+            {/* Carousel Indicators */}
+            {heroSlides.length > 1 && (
+              <div className="flex justify-center mt-12 gap-3">
+                {heroSlides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentSlide 
+                        ? 'w-8 bg-[#3F5B43] dark:bg-[#8FAE83]' 
+                        : 'w-2 bg-[#D8CFC2] dark:bg-[#4A433D] hover:bg-[#6F665F]'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </section>
 
       {/* Brands Showcase Bar */}

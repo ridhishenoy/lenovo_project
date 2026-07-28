@@ -22,9 +22,9 @@ import {
 import { ProductFormModal } from '../components/admin/ProductFormModal';
 
 export const AdminDashboardPage: React.FC = () => {
-  const { products, addProduct, updateProduct, deleteProduct, repairOrders, setRepairOrders, showToast, partners, addPartner, removePartner } = useApp();
+  const { products, addProduct, updateProduct, deleteProduct, repairOrders, setRepairOrders, showToast, partners, addPartner, removePartner, heroSlides, addHeroSlide, removeHeroSlide, updateHeroSlide } = useApp();
 
-  const [activeTab, setActiveTab] = useState<'analytics' | 'products' | 'repairs' | 'partners'>('analytics');
+  const [activeTab, setActiveTab] = useState<'analytics' | 'products' | 'repairs' | 'partners' | 'slides'>('analytics');
 
   // Product Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,6 +34,11 @@ export const AdminDashboardPage: React.FC = () => {
   const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
   const [newPartner, setNewPartner] = useState({ name: '', logo: '', imageUrl: '' });
   const [isDragging, setIsDragging] = useState(false);
+
+  // Slide Modal State
+  const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
+  const [editingSlide, setEditingSlide] = useState<any>(null);
+  const [newSlide, setNewSlide] = useState({ id: '', title: '', subtitle: '', discount: '', ctaText: '', link: '', image: '' });
 
   const handleOpenAddModal = () => {
     setEditingProduct(null);
@@ -125,6 +130,16 @@ export const AdminDashboardPage: React.FC = () => {
             }`}
           >
             Partners
+          </button>
+          <button
+            onClick={() => setActiveTab('slides')}
+            className={`px-5 py-2 rounded-full transition-all ${
+              activeTab === 'slides' 
+                ? 'bg-[#3F5B43] dark:bg-[#8FAE83] text-white dark:text-[#181512] shadow-sm' 
+                : 'text-[#6F665F] dark:text-[#C5BFB8] hover:text-[#2D241E]'
+            }`}
+          >
+            Slides
           </button>
         </div>
       </div>
@@ -408,6 +423,113 @@ export const AdminDashboardPage: React.FC = () => {
                 Save Partner
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Slides Management */}
+      {activeTab === 'slides' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">New Arrivals (Slides)</h2>
+            <button
+              onClick={() => {
+                setEditingSlide(null);
+                setNewSlide({ id: '', title: '', subtitle: '', discount: '', ctaText: '', link: '', image: '' });
+                setIsSlideModalOpen(true);
+              }}
+              className="px-5 py-2.5 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold text-xs rounded-full flex items-center gap-1.5 shadow-sm transition-all"
+            >
+              <Plus className="w-4 h-4" /> Add Slide
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {heroSlides.map(slide => (
+              <div key={slide.id} className="bg-[#FFFDF8] dark:bg-[#221D19] border border-[#D8CFC2] dark:border-[#4A433D] rounded-2xl p-6 shadow-sm relative group flex flex-col">
+                <img src={slide.image} alt={slide.title} className="w-full h-40 object-cover rounded-xl mb-4" />
+                <h3 className="text-lg font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED] mb-1">{slide.title}</h3>
+                <p className="text-xs text-[#6F665F] dark:text-[#C5BFB8] line-clamp-2 mb-2">{slide.subtitle}</p>
+                <div className="mt-auto pt-4 flex gap-2 border-t border-[#D8CFC2]/50 dark:border-[#4A433D]/50">
+                  <button
+                    onClick={() => {
+                      setEditingSlide(slide);
+                      setNewSlide(slide);
+                      setIsSlideModalOpen(true);
+                    }}
+                    className="flex-1 py-2 bg-[#D8CFC2]/30 dark:bg-[#4A433D]/30 text-[#2D241E] dark:text-[#F5F2ED] rounded-xl text-xs font-semibold flex items-center justify-center gap-1 hover:bg-[#D8CFC2]/50 dark:hover:bg-[#4A433D]/50 transition-colors"
+                  >
+                    <Edit3 className="w-3 h-3" /> Edit
+                  </button>
+                  <button
+                    onClick={() => { if(confirm(`Remove slide ${slide.title}?`)) removeHeroSlide(slide.id); }}
+                    className="flex-1 py-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl text-xs font-semibold flex items-center justify-center gap-1 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
+                  >
+                    <Trash2 className="w-3 h-3" /> Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Add/Edit Slide Modal */}
+      {isSlideModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-[#FFFDF8] dark:bg-[#221D19] rounded-3xl w-full max-w-2xl p-6 shadow-xl border border-[#D8CFC2] dark:border-[#4A433D] my-8">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-serif font-bold text-[#2D241E] dark:text-[#F5F2ED]">{editingSlide ? 'Edit Slide' : 'Add New Slide'}</h3>
+              <button onClick={() => setIsSlideModalOpen(false)} className="text-[#6F665F] hover:text-[#2D241E] dark:text-[#C5BFB8] dark:hover:text-[#F5F2ED]">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="md:col-span-2">
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Title</label>
+                <input type="text" value={newSlide.title} onChange={e => setNewSlide({...newSlide, title: e.target.value})} className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]" placeholder="e.g. Crafted Workstations" />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Subtitle</label>
+                <textarea value={newSlide.subtitle} onChange={e => setNewSlide({...newSlide, subtitle: e.target.value})} className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]" placeholder="Short description..." rows={2}></textarea>
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Discount Tagline</label>
+                <input type="text" value={newSlide.discount} onChange={e => setNewSlide({...newSlide, discount: e.target.value})} className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]" placeholder="e.g. 20% Off" />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">CTA Text</label>
+                <input type="text" value={newSlide.ctaText} onChange={e => setNewSlide({...newSlide, ctaText: e.target.value})} className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]" placeholder="e.g. Shop Now" />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Link URL</label>
+                <input type="text" value={newSlide.link} onChange={e => setNewSlide({...newSlide, link: e.target.value})} className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]" placeholder="e.g. /products?category=Laptops" />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-xs font-semibold text-[#6F665F] dark:text-[#C5BFB8] mb-1.5 uppercase">Image URL (or Base64)</label>
+                <input type="text" value={newSlide.image} onChange={e => setNewSlide({...newSlide, image: e.target.value})} className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#181512] border border-[#D8CFC2] dark:border-[#4A433D] text-[#2D241E] dark:text-[#F5F2ED] focus:outline-none focus:ring-2 focus:ring-[#3F5B43] dark:focus:ring-[#8FAE83]" placeholder="/images/products/hero.png" />
+                {newSlide.image && <img src={newSlide.image} alt="Preview" className="mt-2 h-20 object-contain rounded-lg border border-[#D8CFC2] dark:border-[#4A433D]" />}
+              </div>
+            </div>
+            
+            <button
+              onClick={() => {
+                if (newSlide.title && newSlide.image) {
+                  if (editingSlide) {
+                    updateHeroSlide(editingSlide.id, newSlide as any);
+                  } else {
+                    addHeroSlide({ ...newSlide, id: `hs-${Date.now()}` } as any);
+                  }
+                  setIsSlideModalOpen(false);
+                } else {
+                  showToast('Please provide at least a title and image URL', 'error');
+                }
+              }}
+              className="w-full py-3 mt-6 bg-[#3F5B43] hover:bg-[#2F4734] dark:bg-[#8FAE83] dark:hover:bg-[#78976E] text-white dark:text-[#181512] font-semibold rounded-xl transition-colors"
+            >
+              {editingSlide ? 'Update Slide' : 'Save Slide'}
+            </button>
           </div>
         </div>
       )}
